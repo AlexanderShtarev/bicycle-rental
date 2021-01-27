@@ -4,3 +4,4 @@ mail.properties
 *.iml
 target/
 log/
+sql/
