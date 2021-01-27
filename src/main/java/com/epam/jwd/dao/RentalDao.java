@@ -9,7 +9,9 @@ import java.util.List;
 
 public interface RentalDao {
 
-    List<Rental> findAll(Connection con) throws DaoException;
+    //todo
+
+    /*List<Rental> findAll(Connection con) throws DaoException;
 
     List<Rental> findByCriteria(Connection con, Criteria<? extends Rental> criteria) throws DaoException;
 
@@ -17,6 +19,6 @@ public interface RentalDao {
 
     void update(Connection con, Rental rental) throws DaoException;
 
-    void delete(Connection con, Long rentalId) throws DaoException;
+    void delete(Connection con, Long rentalId) throws DaoException;*/
 
 }

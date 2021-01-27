@@ -1,16 +1,28 @@
 package com.epam.jwd.dao.mysql;
 
 import com.epam.jwd.dao.GenericDao;
+import com.epam.jwd.dao.ProductTypeDao;
+import com.epam.jwd.dao.constant.ProductTypeFieldsConstant;
 import com.epam.jwd.domain.ProductType;
+import com.epam.jwd.exception.DaoException;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-public class MySqlProductTypeDao extends GenericDao<ProductType> {
+public class MySqlProductTypeDao extends GenericDao<ProductType> implements ProductTypeDao {
+    private static MySqlProductTypeDao instance;
 
-    private static final String SQL_GET_ALL_TYPES =
+    private static final String SQL_FIND_ALL_TYPES =
             "";
+
+    private static final String SQL_FIND_TYPE_BY_ID =
+            SQL_FIND_ALL_TYPES + "";
+
+    private static final String SQL_FIND_TYPE_BY_NAME =
+            SQL_FIND_ALL_TYPES + "";
 
     private static final String SQL_ADD_TYPE =
             "";
@@ -21,11 +33,17 @@ public class MySqlProductTypeDao extends GenericDao<ProductType> {
     private static final String SQL_DELETE_TYPE =
             "";
 
+    public static MySqlProductTypeDao getInstance() {
+        if (instance == null)
+            instance = new MySqlProductTypeDao();
+        return instance;
+    }
+
     @Override
     protected ProductType mapToEntity(ResultSet rs) throws SQLException {
         return ProductType.builder()
-                .id(rs.getLong("type.id"))
-                .name(rs.getString("type.name"))
+                .id(rs.getLong(ProductTypeFieldsConstant.TYPE_ID))
+                .name(rs.getString(ProductTypeFieldsConstant.TYPE_NAME))
                 .build();
     }
 
@@ -36,4 +54,33 @@ public class MySqlProductTypeDao extends GenericDao<ProductType> {
 
     }
 
+    @Override
+    public List<ProductType> findAll(Connection con) throws DaoException {
+        return null;
+    }
+
+    @Override
+    public ProductType findById(Connection con, Integer typeId) throws DaoException {
+        return null;
+    }
+
+    @Override
+    public ProductType findByName(Connection con, String typeName) throws DaoException {
+        return null;
+    }
+
+    @Override
+    public void add(Connection con, ProductType type) throws DaoException {
+
+    }
+
+    @Override
+    public void update(Connection con, ProductType type) throws DaoException {
+
+    }
+
+    @Override
+    public void delete(Connection con, Integer typeId) throws DaoException {
+
+    }
 }

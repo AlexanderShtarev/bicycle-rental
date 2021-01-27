@@ -14,52 +14,52 @@ public class MySqlDaoFactory extends DaoFactory {
 
     @Override
     public ImageDao getImageDao() {
-        return null;
+        return MySqlImageDao.getInstance();
     }
 
     @Override
     public InventoryDao getInventoryDao() {
-        return null;
+        return MySqlInventoryDao.getInstance();
     }
 
     @Override
     public ProductDao getProductDao() {
-        return null;
+        return MySqlProductDao.getInstance();
     }
 
     @Override
     public ProductProducerDao getProductProducerDao() {
-        return null;
+        return MySqlProductProducerDao.getInstance();
     }
 
     @Override
     public ProductTypeDao getProductTypeDao() {
-        return null;
+        return MySqlProductTypeDao.getInstance();
     }
 
     @Override
     public RentalDao getRentalDao() {
-        return null;
+        return MySqlRentalDao.getInstance();
     }
 
     @Override
     public StoreDao getStoreDao() {
-        return null;
+        return MySqlStoreDao.getInstance();
     }
 
     @Override
     public UserDao getUserDao() {
-        return null;
+        return MySqlUserDao.getInstance();
     }
 
     @Override
     public UserRoleDao getRoleDao() {
-        return null;
+        return MySqlUserRoleDao.getInstance();
     }
 
     @Override
     public VerificationTokenDao getVerificationTokenDao() {
-        return null;
+        return MySqlVerificationTokenDao.getInstance();
     }
 
 }

@@ -1,6 +1,7 @@
 package com.epam.jwd.dao.mysql;
 
 import com.epam.jwd.dao.GenericDao;
+import com.epam.jwd.dao.InventoryDao;
 import com.epam.jwd.domain.*;
 import sun.net.www.content.text.Generic;
 
@@ -8,7 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MySqlInventoryDao extends GenericDao<Inventory> {
+public class MySqlInventoryDao extends GenericDao<Inventory> implements InventoryDao {
+    private static MySqlInventoryDao instance;
 
     private static final String SQL_GET_ALL_INVENTORIES =
             "";
@@ -21,6 +23,12 @@ public class MySqlInventoryDao extends GenericDao<Inventory> {
 
     private static final String SQL_DELETE_INVENTORY =
             "";
+
+    public static MySqlInventoryDao getInstance() {
+        if (instance == null)
+            instance = new MySqlInventoryDao();
+        return instance;
+    }
 
     @Override
     protected Inventory mapToEntity(ResultSet rs) throws SQLException {

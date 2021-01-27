@@ -1,16 +1,23 @@
 package com.epam.jwd.dao.mysql;
 
+import com.epam.jwd.criteria.Criteria;
 import com.epam.jwd.dao.GenericDao;
+import com.epam.jwd.dao.UserDao;
+import com.epam.jwd.dao.constant.UserFieldsConstant;
 import com.epam.jwd.domain.User;
 import com.epam.jwd.domain.UserRole;
 import com.epam.jwd.domain.UserStatus;
+import com.epam.jwd.exception.DaoException;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class MySqlUserDao extends GenericDao<User> {
+public class MySqlUserDao extends GenericDao<User> implements UserDao {
+    private static MySqlUserDao instance;
 
     private static final String SQL_GET_ALL_USERS =
             "";
@@ -24,16 +31,22 @@ public class MySqlUserDao extends GenericDao<User> {
     private static final String SQL_DELETE_USER =
             "";
 
+    public static MySqlUserDao getInstance() {
+        if (instance == null)
+            instance = new MySqlUserDao();
+        return instance;
+    }
+
     @Override
     protected User mapToEntity(ResultSet rs) throws SQLException {
 
         return User.builder()
-                .id(rs.getLong("users.id"))
-                .email(rs.getString("users.email"))
-                .password(rs.getString("users.password"))
-                .name(rs.getString("users.name"))
-                .balance(rs.getDouble("users.balance"))
-                .status(UserStatus.resolveStatusById(rs.getInt("users.status_id")))
+                .id(rs.getLong(UserFieldsConstant.USER_ID))
+                .email(rs.getString(UserFieldsConstant.USER_EMAIL))
+                .password(rs.getString(UserFieldsConstant.USER_PASSWORD))
+                .name(rs.getString(UserFieldsConstant.USER_NAME))
+                .balance(rs.getDouble(UserFieldsConstant.USER_BALANCE))
+                .status(UserStatus.resolveStatusById(rs.getInt(UserFieldsConstant.USER_STATUS_ID)))
                 .roles(new ArrayList<UserRole>())
                 .build();
 
@@ -50,4 +63,28 @@ public class MySqlUserDao extends GenericDao<User> {
 
     }
 
+    @Override
+    public List<User> findAll(Connection con) throws DaoException {
+        return null;
+    }
+
+    @Override
+    public User findByCriteria(Connection con, Criteria<? extends User> criteria) throws DaoException {
+        return null;
+    }
+
+    @Override
+    public void addUser(Connection con, User user) throws DaoException {
+
+    }
+
+    @Override
+    public void updateUser(Connection con, User user) throws DaoException {
+
+    }
+
+    @Override
+    public void deleteUser(Connection con, Long userId) throws DaoException {
+
+    }
 }

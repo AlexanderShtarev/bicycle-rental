@@ -12,4 +12,6 @@ public interface VerificationTokenDao {
 
     void add(Connection con, VerificationToken token) throws DaoException;
 
+    void delete(Connection con, Long tokenId) throws DaoException;
+
 }
