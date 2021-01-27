@@ -13,11 +13,6 @@ public class MySqlDaoFactory extends DaoFactory {
 
 
     @Override
-    public ImageDao getImageDao() {
-        return MySqlImageDao.getInstance();
-    }
-
-    @Override
     public InventoryDao getInventoryDao() {
         return MySqlInventoryDao.getInstance();
     }

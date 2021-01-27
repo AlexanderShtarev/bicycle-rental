@@ -17,8 +17,6 @@ public abstract class DaoFactory {
         }
     }
 
-    public abstract ImageDao getImageDao();
-
     public abstract InventoryDao getInventoryDao();
 
     public abstract ProductDao getProductDao();

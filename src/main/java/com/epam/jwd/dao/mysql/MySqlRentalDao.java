@@ -17,16 +17,21 @@ public class MySqlRentalDao extends GenericDao<Rental> implements RentalDao {
     private static MySqlRentalDao instance;
 
     private static final String SQL_GET_ALL_RENTALS =
-            "";
+            "SELECT inventory_id, product_quantity, user_id, rental_date, return_date, total, status_id\n" +
+                    "FROM rental";
 
     private static final String SQL_ADD_RENTAL =
-            "";
+            "INSERT INTO rental(inventory_id, product_quantity, user_id, rental_date, return_date, total, status_id)\n" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?);";
 
     private static final String SQL_UPDATE_RENTAL =
-            "";
+            "UPDATE rental\n" +
+                    "SET inventory_id = ?, product_quantity = ?, user_id = ?, rental_date = ?, return_date = ?, total = ?, status_id = ?\n" +
+                    "WHERE rental.id = ?;";
 
     private static final String SQL_DELETE_RENTAL =
-            "";
+            "DELETE FROM rental\n" +
+                    "WHERE rental.id = ?";
 
     public static MySqlRentalDao getInstance() {
         if (instance == null)

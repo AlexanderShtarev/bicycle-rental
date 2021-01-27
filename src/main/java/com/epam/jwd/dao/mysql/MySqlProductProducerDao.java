@@ -16,22 +16,27 @@ public class MySqlProductProducerDao extends GenericDao<ProductProducer> impleme
     private static MySqlProductProducerDao instance;
 
     private static final String SQL_FIND_ALL_PRODUCERS =
-            "";
+            "SELECT producer.id, producer.name FROM producer\n";
 
     private static final String SQL_FIND_PRODUCER_BY_ID =
-            SQL_FIND_ALL_PRODUCERS + "";
+            SQL_FIND_ALL_PRODUCERS + "WHERE id = ?";
 
     private static final String SQL_FIND_PRODUCER_BY_NAME =
-            SQL_FIND_ALL_PRODUCERS + "";
+            SQL_FIND_ALL_PRODUCERS + "WHERE name = ?";
 
     private static final String SQL_ADD_PRODUCER =
-            "";
+            "INSERT INTO producer(name)\n" +
+                    "VALUES (?);";
 
     private static final String SQL_UPDATE_PRODUCER =
-            "";
+            "UPDATE producer\n" +
+                    "SET producer = ?\n" +
+                    "WHERE id = ?";
 
     private static final String SQL_DELETE_PRODUCER =
-            "";
+            "DELETE producer\n" +
+                    "FROM producer\n" +
+                    "WHERE id = ?";
 
     public static MySqlProductProducerDao getInstance() {
         if (instance == null)

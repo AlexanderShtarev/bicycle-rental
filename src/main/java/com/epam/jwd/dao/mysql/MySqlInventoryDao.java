@@ -2,6 +2,7 @@ package com.epam.jwd.dao.mysql;
 
 import com.epam.jwd.dao.GenericDao;
 import com.epam.jwd.dao.InventoryDao;
+import com.epam.jwd.dao.constant.InventoryFieldsConstant;
 import com.epam.jwd.domain.*;
 import sun.net.www.content.text.Generic;
 
@@ -13,16 +14,22 @@ public class MySqlInventoryDao extends GenericDao<Inventory> implements Inventor
     private static MySqlInventoryDao instance;
 
     private static final String SQL_GET_ALL_INVENTORIES =
-            "";
+            "SELECT inventory.id, inventory.product_id, inventory.store_id\n" +
+                    "FROM inventory\n" +
+                    "WHERE inventory.id = ?";
 
     private static final String SQL_ADD_INVENTORY =
-            "";
+            "INSERT INTO inventory (product_id, store_id)\n" +
+                    "VALUES (?, ?)";
 
     private static final String SQL_UPDATE_INVENTORY =
-            "";
+            "UPDATE inventory\n" +
+                    "SET product_id = ?, store_id = ?\n" +
+                    "WHERE inventory.id = ?";
 
     private static final String SQL_DELETE_INVENTORY =
-            "";
+            "DELETE inventory FROM inventory\n" +
+                    "WHERE inventory.id = ?";
 
     public static MySqlInventoryDao getInstance() {
         if (instance == null)
@@ -34,29 +41,12 @@ public class MySqlInventoryDao extends GenericDao<Inventory> implements Inventor
     protected Inventory mapToEntity(ResultSet rs) throws SQLException {
 
         return Inventory.builder()
-                .id(rs.getLong("inventory.id"))
+                .id(rs.getLong(InventoryFieldsConstant.INVENTORY_ID))
                 .product(Product.builder()
-                        .id(rs.getLong("product.id"))
-                        .model(rs.getString("product.model"))
-                        .pricePerHour(rs.getDouble("product.price_per_hour"))
-                        .producer(ProductProducer.builder()
-                                .id(rs.getLong("producer.id"))
-                                .name(rs.getString("producer.name"))
-                                .build())
-                        .type(ProductType.builder()
-                                .id(rs.getLong("type.id"))
-                                .name(rs.getString("type.name"))
-                                .build())
-                        .image(Image.builder()
-                                .id(rs.getLong("image.id"))
-                                .title(rs.getString("image.title"))
-                                .imageLink(rs.getString("image.image_link"))
-                                .build())
+                        .id(rs.getLong(InventoryFieldsConstant.INVENTORY_PRODUCT_ID))
                         .build())
                 .store(Store.builder()
-                        .id(rs.getLong("store.id"))
-                        .address(rs.getString("store.address"))
-                        .phone(rs.getString("store.phone"))
+                        .id(rs.getLong(InventoryFieldsConstant.INVENTORY_STORE_ID))
                         .build())
                 .build();
 

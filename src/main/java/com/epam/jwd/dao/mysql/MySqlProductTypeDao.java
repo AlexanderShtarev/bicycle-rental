@@ -16,22 +16,28 @@ public class MySqlProductTypeDao extends GenericDao<ProductType> implements Prod
     private static MySqlProductTypeDao instance;
 
     private static final String SQL_FIND_ALL_TYPES =
-            "";
+            "SELECT type.id, type.name\n" +
+                    "FROM type\n";
 
     private static final String SQL_FIND_TYPE_BY_ID =
-            SQL_FIND_ALL_TYPES + "";
+            SQL_FIND_ALL_TYPES + "WHERE id = ?";
 
     private static final String SQL_FIND_TYPE_BY_NAME =
-            SQL_FIND_ALL_TYPES + "";
+            SQL_FIND_ALL_TYPES + "WHERE name = ?";
 
     private static final String SQL_ADD_TYPE =
-            "";
+            "INSERT INTO type(name)\n" +
+                    "VALUES (?);";
 
     private static final String SQL_UPDATE_TYPE =
-            "";
+            "UPDATE type\n" +
+                    "SET type = ?\n" +
+                    "WHERE id = ?";
 
     private static final String SQL_DELETE_TYPE =
-            "";
+            "DELETE type\n" +
+                    "FROM type\n" +
+                    "WHERE id = ?";
 
     public static MySqlProductTypeDao getInstance() {
         if (instance == null)

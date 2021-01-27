@@ -20,16 +20,21 @@ public class MySqlUserDao extends GenericDao<User> implements UserDao {
     private static MySqlUserDao instance;
 
     private static final String SQL_GET_ALL_USERS =
-            "";
+            "SELECT id, login, password, name, balance, status_id\n" +
+                    "FROM users;\n";
 
     private static final String SQL_ADD_USER =
-            "";
+            "INSERT INTO users(id, login, password, name, balance, status_id)\n" +
+                    "VALUES (?, ?, ?, ?, ?, ?);";
 
     private static final String SQL_UPDATE_USER =
-            "";
+            "UPDATE users\n" +
+                    "SET id = ?, login = ?, password = ?, name = ?, balance = ?, status_id = ?\n" +
+                    "WHERE users.id = ?";
 
     private static final String SQL_DELETE_USER =
-            "";
+            "DELETE FROM users\n" +
+                    "WHERE users.id = ?;";
 
     public static MySqlUserDao getInstance() {
         if (instance == null)

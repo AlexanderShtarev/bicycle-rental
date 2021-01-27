@@ -14,13 +14,21 @@ public class MySqlVerificationTokenDao extends GenericDao<VerificationToken> imp
     private static MySqlVerificationTokenDao instance;
 
     private static final String SQL_FIND_ALL_TOKENS =
-            "";
+            "SELECT id, token, created_date, user_id\n" +
+                    "FROM verification_token";
 
     private static final String SQL_ADD_TOKEN =
-            "";
+            "INSERT INTO verification_token(id, token, created_date, user_id)\n" +
+                    "VALUES (?, ?, ?, ?);";
+
+    private static final String SQL_UPDATE_TOKEN =
+            "UPDATE verification_token\n" +
+                    "SET token = ?, created_date = ?, user_id = ?\n" +
+                    "WHERE verification_token.id = ?;";
 
     private static final String SQL_DELETE_TOKEN =
-            "";
+            "DELETE verification_token FROM verification_token\n" +
+                    "WHERE verification_token.id = ?;";
 
     public static MySqlVerificationTokenDao getInstance() {
         if (instance == null)

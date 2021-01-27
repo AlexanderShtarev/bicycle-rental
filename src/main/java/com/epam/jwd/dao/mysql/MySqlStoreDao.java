@@ -13,16 +13,21 @@ public class MySqlStoreDao extends GenericDao<Store> implements StoreDao {
     private static MySqlStoreDao instance;
 
     private static final String SQL_GET_ALL_STORES =
-            "";
+            "SELECT id, address, phone\n" +
+                    "FROM store";
 
     private static final String SQL_ADD_STORE =
-            "";
+            "INSERT INTO store (address, phone)\n" +
+                    "VALUES (?, ?);";
 
     private static final String SQL_UPDATE_STORE =
-            "";
+            "UPDATE store\n" +
+                    "SET address = ?, phone = ?\n" +
+                    "WHERE store.id = ?;";
 
     private static final String SQL_DELETE_STORE =
-            "";
+            "DELETE store FROM store\n" +
+                    "WHERE store.id = ?";
 
     public static MySqlStoreDao getInstance() {
         if (instance == null)

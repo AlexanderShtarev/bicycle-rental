@@ -27,9 +27,9 @@ public class MySqlProductDao extends GenericDao<Product> implements ProductDao {
                     "       type.id, type.name, producer.id, producer.name,\n" +
                     "       images.id, images.title, images.image_link\n" +
                     "FROM product\n" +
-                    "JOIN images on images.id = product.image_id\n" +
-                    "JOIN producer on producer.id = product.producer_id\n" +
-                    "JOIN type on type.id = product.type_id";
+                    "JOIN images ON images.id = product.image_id\n" +
+                    "JOIN producer ON producer.id = product.producer_id\n" +
+                    "JOIN type ON type.id = product.type_id";
 
     private static final String SQL_ADD_PRODUCT =
             "INSERT INTO product(model, price_per_hour, producer_id, type_id, image_id)\n" +
@@ -37,7 +37,8 @@ public class MySqlProductDao extends GenericDao<Product> implements ProductDao {
 
     private static final String SQL_UPDATE_PRODUCT =
             "UPDATE product\n" +
-                    "SET model = ?, price_per_hour = ?, producer_id = ?, type_id = ?, image_id = ?;";
+                    "SET model = ?, price_per_hour = ?, producer_id = ?, type_id = ?, image_id = ?;\n" +
+                    "WHERE product.id = ?";
 
     private static final String SQL_DELETE_PRODUCT =
             "DELETE FROM product\n" +
