@@ -21,6 +21,7 @@ public abstract class Command {
 
     protected void forward(String page) {
         String target = String.format("/jsp/%s.jsp", page);
+        System.out.println(target);
         try {
             context.getRequestDispatcher(target).forward(request, response);
         } catch (ServletException | IOException e) {

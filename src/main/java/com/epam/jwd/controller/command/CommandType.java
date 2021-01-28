@@ -1,6 +1,6 @@
 package com.epam.jwd.controller.command;
 
-import com.epam.jwd.controller.command.impl.ToHomePageCommand;
+import com.epam.jwd.controller.command.impl.*;
 
 import java.util.Map;
 
@@ -9,7 +9,12 @@ public class CommandType {
 
     private static Map<String, Command> initMap() {
         return Map.ofEntries(
-            Map.entry("TO_HOME_PAGE", new ToHomePageCommand()));
+                Map.entry("CHECK_OTP", new CheckOtpCommand()),
+                Map.entry("TO_HOME_PAGE", new ToHomePageCommand()),
+                Map.entry("TO_LOGIN_PAGE", new ToLoginPageCommand()),
+                Map.entry("TO_REGISTER_PAGE", new ToRegisterPageCommand()),
+                Map.entry("LOGIN", new LoginCommand()),
+                Map.entry("REGISTER", new RegisterCommand()));
     }
 
     public static Map<String, Command> getCommands() {

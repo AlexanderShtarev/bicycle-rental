@@ -11,4 +11,9 @@ public abstract class Entity implements Serializable, Cloneable, Identified<Long
         return this.id;
     }
 
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }

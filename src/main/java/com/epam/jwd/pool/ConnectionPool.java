@@ -37,6 +37,13 @@ public class ConnectionPool {
     private void initialize() {
         config = DatabaseConfig.getInstance();
         connections = new ArrayBlockingQueue<>(config.getPoolSize());
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         for (int i = 0; i < config.getPoolSize(); i++) {
             try {
                 connections.add(createConnection());

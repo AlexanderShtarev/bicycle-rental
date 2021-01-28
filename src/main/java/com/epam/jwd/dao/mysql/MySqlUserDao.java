@@ -25,8 +25,8 @@ public class MySqlUserDao extends AbstractJDBCDao<User, Long> implements UserDao
                     "FROM users\n";
 
     private static final String SQL_CREATE_USER =
-            "INSERT INTO users(id, email, password, name, balance, status_id)\n" +
-                    "VALUES (?, ?, ?, ?, ?, ?);";
+            "INSERT INTO users(email, password, name, balance, status_id)\n" +
+                    "VALUES (?, ?, ?, ?, ?);";
 
     private static final String SQL_UPDATE_USER =
             "UPDATE users\n" +
@@ -124,8 +124,10 @@ public class MySqlUserDao extends AbstractJDBCDao<User, Long> implements UserDao
     }
 
     @Override
-    public User add(Connection con, User user) throws DaoException {
-        return super.add(con, user);
+    public Long add(Connection con, User user) throws DaoException {
+        Long id = super.add(con, user);
+        user.setId(id);
+        return id;
     }
 
     @Override

@@ -109,8 +109,10 @@ public class MySqlProductProducerDao extends AbstractJDBCDao<ProductProducer, Lo
     }
 
     @Override
-    public ProductProducer add(Connection con, ProductProducer producer) throws DaoException {
-        return super.add(con, producer);
+    public Long add(Connection con, ProductProducer producer) throws DaoException {
+        Long id = super.add(con, producer);
+        producer.setId(id);
+        return id;
     }
 
     @Override

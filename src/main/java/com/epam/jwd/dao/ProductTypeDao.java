@@ -13,7 +13,7 @@ public interface ProductTypeDao {
 
     List<ProductType> getByCriteria(Connection con, Criteria<? extends ProductType> criteria) throws DaoException;
 
-    ProductType add(Connection con, ProductType type) throws DaoException;
+    Long add(Connection con, ProductType type) throws DaoException;
 
     void update(Connection con, ProductType type) throws DaoException;
 

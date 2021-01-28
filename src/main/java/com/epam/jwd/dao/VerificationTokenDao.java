@@ -11,7 +11,7 @@ public interface VerificationTokenDao {
 
     List<VerificationToken> getByCriteria(Connection con, Criteria<? extends VerificationToken> criteria) throws DaoException;
 
-    VerificationToken add(Connection con, VerificationToken token) throws DaoException;
+    Long add(Connection con, VerificationToken token) throws DaoException;
 
     void delete(Connection con, Long tokenId) throws DaoException;
 

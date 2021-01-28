@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Serializable> {
@@ -53,35 +54,26 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Seria
         return list;
     }
 
-    protected T add(Connection connection, T object) throws DaoException {
+    protected Long add(Connection connection, T object) throws DaoException {
         if (object.getId() != null) {
             throw new DaoException("Object is already exist.");
         }
-        T persistInstance;
 
         String sql = getCreateQuery();
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             prepareStatementForInsert(statement, object);
             int count = statement.executeUpdate();
             if (count != 1) {
                 throw new DaoException("On add modify more then 1 record: " + count);
             }
-        } catch (Exception e) {
-            throw new DaoException(e);
-        }
-
-        sql = getSelectQuery() + " WHERE id = last_insert_id();";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            ResultSet rs = statement.executeQuery();
-            List<T> list = parseResultSet(rs);
-            if ((list == null) || (list.size() != 1)) {
-                throw new DaoException("Exception on findByPK new data.");
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getLong(1);
             }
-            persistInstance = list.iterator().next();
         } catch (Exception e) {
             throw new DaoException(e);
         }
-        return persistInstance;
+        throw new DaoException("Exception while add");
     }
 
     protected void update(Connection connection, T object) throws DaoException {

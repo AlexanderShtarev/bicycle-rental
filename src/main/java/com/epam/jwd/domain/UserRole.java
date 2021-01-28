@@ -1,6 +1,6 @@
 package com.epam.jwd.domain;
 
-public enum UserRole implements Identified<Integer> {
+public enum UserRole  {
     CLIENT(1),
     ADMIN(2),
     UNKNOWN(3);
@@ -11,7 +11,6 @@ public enum UserRole implements Identified<Integer> {
         this.id = id;
     }
 
-    @Override
     public Integer getId() {
         return id;
     }

@@ -23,8 +23,8 @@ public class MySqlVerificationTokenDao extends AbstractJDBCDao<VerificationToken
                     "FROM verification_token";
 
     private static final String SQL_CREATE_TOKEN =
-            "INSERT INTO verification_token(id, token, created_date, user_id)\n" +
-                    "VALUES (?, ?, ?, ?);";
+            "INSERT INTO verification_token(token, created_date, user_id)\n" +
+                    "VALUES (?, ?, ?);";
 
     private static final String SQL_UPDATE_TOKEN =
             "UPDATE verification_token\n" +
@@ -111,8 +111,10 @@ public class MySqlVerificationTokenDao extends AbstractJDBCDao<VerificationToken
     }
 
     @Override
-    public VerificationToken add(Connection con, VerificationToken token) throws DaoException {
-        return super.add(con, token);
+    public Long add(Connection con, VerificationToken token) throws DaoException {
+        Long id = super.add(con, token);
+        token.setId(id);
+        return id;
     }
 
     @Override

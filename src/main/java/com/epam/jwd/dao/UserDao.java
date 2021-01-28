@@ -13,7 +13,7 @@ public interface UserDao {
 
     List<User> getByCriteria(Connection con, Criteria<? extends User> criteria) throws DaoException;
 
-    User add(Connection con, User user) throws DaoException;
+    Long add(Connection con, User user) throws DaoException;
 
     void update(Connection con, User user) throws DaoException;
 

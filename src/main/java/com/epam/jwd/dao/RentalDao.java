@@ -13,7 +13,7 @@ public interface RentalDao {
 
     List<Rental> getByCriteria(Connection con, Criteria<? extends Rental> criteria) throws DaoException;
 
-    Rental add(Connection con, Rental rental) throws DaoException;
+    Long add(Connection con, Rental rental) throws DaoException;
 
     void update(Connection con, Rental rental) throws DaoException;
 

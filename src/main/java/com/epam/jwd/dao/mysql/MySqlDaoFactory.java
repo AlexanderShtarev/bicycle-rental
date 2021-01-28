@@ -48,11 +48,6 @@ public class MySqlDaoFactory extends DaoFactory {
     }
 
     @Override
-    public UserRoleDao getRoleDao() {
-        return MySqlUserRoleDao.getInstance();
-    }
-
-    @Override
     public VerificationTokenDao getVerificationTokenDao() {
         return MySqlVerificationTokenDao.getInstance();
     }
