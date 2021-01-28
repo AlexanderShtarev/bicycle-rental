@@ -3,7 +3,6 @@ package com.epam.jwd.domain;
 import java.util.Objects;
 
 public class Store extends Entity implements Identified<Long> {
-    Long id;
     String address;
     String phone;
 
@@ -12,15 +11,6 @@ public class Store extends Entity implements Identified<Long> {
 
     public Store(Store.Builder builder) {
 
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getAddress() {

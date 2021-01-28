@@ -5,7 +5,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class VerificationToken extends Entity implements Identified<Long> {
-    private Long id;
     private String token;
     private Date createdDate;
     private User user;
@@ -17,11 +16,6 @@ public class VerificationToken extends Entity implements Identified<Long> {
         this.user = user;
         createdDate = new Date();
         token = UUID.randomUUID().toString();
-    }
-
-    @Override
-    public Long getId() {
-        return id;
     }
 
     public String getToken() {

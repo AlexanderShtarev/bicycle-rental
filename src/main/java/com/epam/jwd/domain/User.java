@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class User extends Entity implements Identified<Long> {
-    private Long id;
     private String name;
     private String email;
     private String password;
@@ -26,15 +25,6 @@ public class User extends Entity implements Identified<Long> {
 
     public User(User.Builder builder) {
 
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

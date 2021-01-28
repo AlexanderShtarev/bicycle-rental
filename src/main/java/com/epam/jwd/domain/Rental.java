@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Rental extends Entity implements Identified<Long> {
-    Long id;
     User user;
     Inventory inventory;
     Date rentalDate;
@@ -17,15 +16,6 @@ public class Rental extends Entity implements Identified<Long> {
     }
 
     public Rental(Rental.Builder builder) {
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public User getUser() {

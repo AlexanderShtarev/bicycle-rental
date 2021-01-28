@@ -3,7 +3,6 @@ package com.epam.jwd.domain;
 import java.util.Objects;
 
 public class Image extends Entity implements Identified<Long> {
-    Long id;
     String title;
     String imageLink;
 
@@ -11,15 +10,6 @@ public class Image extends Entity implements Identified<Long> {
     }
 
     public Image(Image.Builder builder) {
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -43,7 +33,7 @@ public class Image extends Entity implements Identified<Long> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Image image = (Image) o;
-        return id == image.id &&
+        return id.equals(image.id) &&
                 title.equals(image.title) &&
                 imageLink.equals(image.imageLink);
     }

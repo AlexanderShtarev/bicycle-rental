@@ -3,22 +3,12 @@ package com.epam.jwd.domain;
 import java.util.Objects;
 
 public class ProductType extends Entity implements Identified<Long> {
-    Long id;
     String name;
 
     public ProductType(ProductType.Builder builder) {
     }
 
     public ProductType() {
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

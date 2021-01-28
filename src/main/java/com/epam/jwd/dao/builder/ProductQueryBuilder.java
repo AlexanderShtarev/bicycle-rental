@@ -8,7 +8,7 @@ import com.epam.jwd.dao.constant.ProductProducerFieldsConstant;
 import com.epam.jwd.dao.constant.ProductTypeFieldsConstant;
 import com.epam.jwd.domain.Entity;
 
-public class ProductQueryBuilder extends QueryBuilder{
+public class ProductQueryBuilder extends QueryBuilder {
     public static final ProductQueryBuilder PRODUCT_QUERY_BUILDER = new ProductQueryBuilder();
 
     private ProductQueryBuilder() {
@@ -54,16 +54,8 @@ public class ProductQueryBuilder extends QueryBuilder{
             }
         }
 
-        if (prCriteria.getImage() != null) {
-            if (prCriteria.getImage().getId() != null) {
-                appendValue(parameters, ImageFieldsConstant.IMAGE_ID, prCriteria.getImage().getId());
-            }
-            if (prCriteria.getImage().getTitle() != null) {
-                appendValue(parameters, ImageFieldsConstant.IMAGE_TITLE, prCriteria.getImage().getTitle());
-            }
-            if (prCriteria.getImage().getImageLink() != null) {
-                appendValue(parameters, ImageFieldsConstant.IMAGE_IMAGE_LINK, prCriteria.getImage().getImageLink());
-            }
+        if (prCriteria.getImage().getId() != null) {
+            appendValue(parameters, ImageFieldsConstant.IMAGE_ID, prCriteria.getImage().getId());
         }
 
         return sqlGetAllProducts + " WHERE " + toStatement(parameters);
