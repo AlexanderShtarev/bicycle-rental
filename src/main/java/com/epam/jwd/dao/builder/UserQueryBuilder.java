@@ -11,11 +11,8 @@ import com.epam.jwd.domain.UserRole;
 public class UserQueryBuilder extends QueryBuilder{
     public static final UserQueryBuilder USER_QUERY_BUILDER = new UserQueryBuilder();
 
-    private static final String SQL_GET_ALL_USERS =
-            "";
-
     @Override
-    public String createQuery(Criteria<? extends Entity> criteria) {
+    public String createQuery(Criteria<? extends Entity> criteria, String sqlGetAllUsers) {
         StringBuffer parameters = new StringBuffer();
 
         if (!(criteria instanceof UserCriteria)) {
@@ -50,7 +47,7 @@ public class UserQueryBuilder extends QueryBuilder{
             appendValue(parameters, UserFieldsConstant.USER_BALANCE, userCriteria.getBalance());
         }
 
-        return SQL_GET_ALL_USERS + " WHERE " + toStatement(parameters);
+        return sqlGetAllUsers + " WHERE " + toStatement(parameters);
     }
 
 }

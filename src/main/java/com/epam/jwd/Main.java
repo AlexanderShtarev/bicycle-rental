@@ -1,24 +1,21 @@
 package com.epam.jwd;
 
-import com.epam.jwd.pool.DataSource;
-import com.epam.jwd.pool.DatabaseConfig;
+import com.epam.jwd.criteria.UserCriteria;
+import com.epam.jwd.dao.*;
+import com.epam.jwd.domain.User;
 
-import java.sql.Connection;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
+        TransactionHandler transactionHandler = new TransactionHandler();
+        DaoFactory daoFactory = DaoFactory.getDaoFactory(DaoFactory.DaoType.MYSQL);
+        UserDao userDao = daoFactory.getUserDao();
 
-        try {
-            DatabaseConfig databaseConfig = DatabaseConfig.getInstance();
-            System.out.println(databaseConfig.toString());
-            Connection connection = DataSource.getConnection();
-            System.out.println(connection);
-            DataSource.returnConnection(connection);
-        } catch (InterruptedException exception) {
-            exception.printStackTrace();
-        }
-
+        List<User> users = transactionHandler.transactional(con ->
+                userDao.getByCriteria(con, UserCriteria.builder().name("name").build()));
+        System.out.println(users);
     }
 
 }

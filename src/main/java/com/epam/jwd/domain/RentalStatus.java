@@ -1,6 +1,6 @@
 package com.epam.jwd.domain;
 
-public enum RentalStatus {
+public enum RentalStatus implements Identified<Integer> {
     PENDING_VERIFICATION(1),
     AWAITING_APPROVAL(2),
     NOT_ACCEPTED(3),
@@ -15,6 +15,7 @@ public enum RentalStatus {
         this.id = id;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }

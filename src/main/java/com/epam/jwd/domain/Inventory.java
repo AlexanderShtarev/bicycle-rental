@@ -2,7 +2,7 @@ package com.epam.jwd.domain;
 
 import java.util.Objects;
 
-public class Inventory extends Entity {
+public class Inventory extends Entity implements Identified<Long> {
     Long id;
     Store store;
     Product product;
@@ -13,6 +13,7 @@ public class Inventory extends Entity {
     public Inventory(Inventory.Builder builder) {
     }
 
+    @Override
     public Long getId() {
         return id;
     }

@@ -2,7 +2,7 @@ package com.epam.jwd.domain;
 
 import java.util.Objects;
 
-public class Image extends Entity {
+public class Image extends Entity implements Identified<Long> {
     Long id;
     String title;
     String imageLink;
@@ -13,6 +13,7 @@ public class Image extends Entity {
     public Image(Image.Builder builder) {
     }
 
+    @Override
     public Long getId() {
         return id;
     }

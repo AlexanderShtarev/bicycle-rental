@@ -11,14 +11,11 @@ import com.epam.jwd.domain.Entity;
 public class ProductQueryBuilder extends QueryBuilder{
     public static final ProductQueryBuilder PRODUCT_QUERY_BUILDER = new ProductQueryBuilder();
 
-    private static final String SQL_GET_ALL_PRODUCTS =
-            "";
-
     private ProductQueryBuilder() {
     }
 
     @Override
-    public String createQuery(Criteria<? extends Entity> criteria) {
+    public String createQuery(Criteria<? extends Entity> criteria, String sqlGetAllProducts) {
         StringBuffer parameters = new StringBuffer();
 
         if (!(criteria instanceof ProductCriteria)) {
@@ -69,7 +66,7 @@ public class ProductQueryBuilder extends QueryBuilder{
             }
         }
 
-        return SQL_GET_ALL_PRODUCTS + " WHERE " + toStatement(parameters);
+        return sqlGetAllProducts + " WHERE " + toStatement(parameters);
     }
 
 }

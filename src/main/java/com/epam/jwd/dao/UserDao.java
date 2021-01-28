@@ -9,14 +9,14 @@ import java.util.List;
 
 public interface UserDao {
 
-    List<User> findAll(Connection con) throws DaoException;
+    List<User> getAll(Connection con) throws DaoException;
 
-    User findByCriteria(Connection con, Criteria<? extends User> criteria) throws DaoException;
+    List<User> getByCriteria(Connection con, Criteria<? extends User> criteria) throws DaoException;
 
-    void addUser(Connection con, User user) throws DaoException;
+    User add(Connection con, User user) throws DaoException;
 
-    void updateUser(Connection con, User user) throws DaoException;
+    void update(Connection con, User user) throws DaoException;
 
-    void deleteUser(Connection con, Long userId) throws DaoException;
+    void delete(Connection con, Long userId) throws DaoException;
 
 }

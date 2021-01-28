@@ -8,11 +8,8 @@ import com.epam.jwd.domain.Entity;
 public class VerificationTokenQueryBuilder extends QueryBuilder {
     public static final VerificationTokenQueryBuilder VERIFICATION_TOKEN_QUERY_BUILDER = new VerificationTokenQueryBuilder();
 
-    private static final String SQL_GET_ALL =
-            "";
-
     @Override
-    public String createQuery(Criteria<? extends Entity> criteria) {
+    public String createQuery(Criteria<? extends Entity> criteria, String sqlGetAllTokens) {
         StringBuffer parameters = new StringBuffer();
 
         if (!(criteria instanceof VerificationTokenCriteria)) {
@@ -39,7 +36,7 @@ public class VerificationTokenQueryBuilder extends QueryBuilder {
             }
         }
 
-        return SQL_GET_ALL + " WHERE " + toStatement(parameters);
+        return sqlGetAllTokens + " WHERE " + toStatement(parameters);
     }
 
 }

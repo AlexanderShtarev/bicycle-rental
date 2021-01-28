@@ -9,16 +9,14 @@ import java.util.List;
 
 public interface RentalDao {
 
-    //todo
+    List<Rental> getAll(Connection con) throws DaoException;
 
-    /*List<Rental> findAll(Connection con) throws DaoException;
+    List<Rental> getByCriteria(Connection con, Criteria<? extends Rental> criteria) throws DaoException;
 
-    List<Rental> findByCriteria(Connection con, Criteria<? extends Rental> criteria) throws DaoException;
-
-    void add(Connection con, Rental rental) throws DaoException;
+    Rental add(Connection con, Rental rental) throws DaoException;
 
     void update(Connection con, Rental rental) throws DaoException;
 
-    void delete(Connection con, Long rentalId) throws DaoException;*/
+    void delete(Connection con, Long rentalId) throws DaoException;
 
 }

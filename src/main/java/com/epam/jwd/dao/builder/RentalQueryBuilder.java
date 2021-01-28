@@ -8,14 +8,11 @@ import com.epam.jwd.domain.Entity;
 public class RentalQueryBuilder extends QueryBuilder {
     public static final RentalQueryBuilder RENTAL_QUERY_BUILDER = new RentalQueryBuilder();
 
-    private static final String SQL_GET_ALL_RENTALS =
-            "";
-
     private RentalQueryBuilder() {
     }
 
     @Override
-    public String createQuery(Criteria<? extends Entity> criteria) {
+    public String createQuery(Criteria<? extends Entity> criteria, String sqlGetAllRentals) {
         StringBuffer parameters = new StringBuffer();
 
         if (!(criteria instanceof RentalCriteria)) {
@@ -56,7 +53,7 @@ public class RentalQueryBuilder extends QueryBuilder {
             appendValue(parameters, RentalFieldsConstant.RENTAL_PRODUCT_QTY, rentalCriteria.getStatus().getId());
         }
 
-        return SQL_GET_ALL_RENTALS + " WHERE " + toStatement(parameters);
+        return sqlGetAllRentals + " WHERE " + toStatement(parameters);
     }
 
 }

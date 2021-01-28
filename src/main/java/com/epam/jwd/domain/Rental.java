@@ -3,7 +3,7 @@ package com.epam.jwd.domain;
 import java.util.Date;
 import java.util.Objects;
 
-public class Rental extends Entity {
+public class Rental extends Entity implements Identified<Long> {
     Long id;
     User user;
     Inventory inventory;
@@ -19,6 +19,7 @@ public class Rental extends Entity {
     public Rental(Rental.Builder builder) {
     }
 
+    @Override
     public Long getId() {
         return id;
     }

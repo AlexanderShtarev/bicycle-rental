@@ -3,7 +3,7 @@ package com.epam.jwd.domain;
 import java.util.List;
 import java.util.Objects;
 
-public class User extends Entity {
+public class User extends Entity implements Identified<Long> {
     private Long id;
     private String name;
     private String email;
@@ -28,6 +28,7 @@ public class User extends Entity {
 
     }
 
+    @Override
     public Long getId() {
         return id;
     }

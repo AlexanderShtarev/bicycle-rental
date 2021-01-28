@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
-public class VerificationToken extends Entity {
+public class VerificationToken extends Entity implements Identified<Long> {
     private Long id;
     private String token;
     private Date createdDate;
@@ -19,6 +19,7 @@ public class VerificationToken extends Entity {
         token = UUID.randomUUID().toString();
     }
 
+    @Override
     public Long getId() {
         return id;
     }

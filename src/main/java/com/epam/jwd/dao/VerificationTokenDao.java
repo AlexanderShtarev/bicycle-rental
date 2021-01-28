@@ -5,12 +5,13 @@ import com.epam.jwd.domain.VerificationToken;
 import com.epam.jwd.exception.DaoException;
 
 import java.sql.Connection;
+import java.util.List;
 
 public interface VerificationTokenDao {
 
-    VerificationToken findByCriteria(Connection con, Criteria<? extends VerificationToken> criteria) throws DaoException;
+    List<VerificationToken> getByCriteria(Connection con, Criteria<? extends VerificationToken> criteria) throws DaoException;
 
-    void add(Connection con, VerificationToken token) throws DaoException;
+    VerificationToken add(Connection con, VerificationToken token) throws DaoException;
 
     void delete(Connection con, Long tokenId) throws DaoException;
 

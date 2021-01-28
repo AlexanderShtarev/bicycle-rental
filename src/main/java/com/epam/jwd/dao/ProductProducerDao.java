@@ -1,5 +1,6 @@
 package com.epam.jwd.dao;
 
+import com.epam.jwd.criteria.Criteria;
 import com.epam.jwd.domain.ProductProducer;
 import com.epam.jwd.exception.DaoException;
 
@@ -8,16 +9,14 @@ import java.util.List;
 
 public interface ProductProducerDao {
 
-    List<ProductProducer> findAll(Connection con) throws DaoException;
+    List<ProductProducer> getAll(Connection con) throws DaoException;
 
-    ProductProducer findById(Connection con, Integer producerId) throws DaoException;
+    List<ProductProducer> getByCriteria(Connection con, Criteria<? extends ProductProducer> criteria) throws DaoException;
 
-    ProductProducer findByName(Connection con, String producerName) throws DaoException;
-
-    void add(Connection con, ProductProducer producer) throws DaoException;
+    ProductProducer add(Connection con, ProductProducer producer) throws DaoException;
 
     void update(Connection con, ProductProducer producer) throws DaoException;
 
-    void delete(Connection con, Integer producerId) throws DaoException;
+    void delete(Connection con, Long producerId) throws DaoException;
 
 }

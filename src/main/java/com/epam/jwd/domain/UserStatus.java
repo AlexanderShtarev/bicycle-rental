@@ -1,6 +1,6 @@
 package com.epam.jwd.domain;
 
-public enum UserStatus {
+public enum UserStatus implements Identified<Integer> {
     ACTIVE(1),
     NON_ACTIVE(2),
     BLOCKED(3);
@@ -11,6 +11,7 @@ public enum UserStatus {
         this.id = id;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }
