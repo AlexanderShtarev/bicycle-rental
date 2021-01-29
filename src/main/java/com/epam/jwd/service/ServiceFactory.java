@@ -2,6 +2,7 @@ package com.epam.jwd.service;
 
 import com.epam.jwd.service.impl.AuthServiceImpl;
 import com.epam.jwd.service.impl.MailServiceImpl;
+import com.epam.jwd.service.impl.ProductServiceImpl;
 import com.epam.jwd.service.impl.UserServiceImpl;
 
 public class ServiceFactory {
@@ -23,5 +24,9 @@ public class ServiceFactory {
 
     public MailService getMailService() {
         return MailServiceImpl.getInstance();
+    }
+
+    public ProductService getProductService() {
+        return ProductServiceImpl.getInstance();
     }
 }

@@ -11,4 +11,5 @@ public class RequestConstant {
     public static final String NAME = "name";
     public static final String C_PASSWORD = "cPassword";
     public static final String TOKEN = "token";
+    public static final String FEATURED_PRODUCTS = "featuredProducts";
 }

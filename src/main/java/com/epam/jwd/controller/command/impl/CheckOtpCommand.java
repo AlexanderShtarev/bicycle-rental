@@ -10,9 +10,6 @@ import com.epam.jwd.service.AuthService;
 import com.epam.jwd.service.MailService;
 import com.epam.jwd.service.ServiceFactory;
 import com.epam.jwd.service.UserService;
-import com.epam.jwd.service.impl.AuthServiceImpl;
-import com.epam.jwd.service.impl.MailServiceImpl;
-import com.epam.jwd.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
