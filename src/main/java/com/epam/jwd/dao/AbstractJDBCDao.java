@@ -29,7 +29,6 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Seria
 
     protected abstract void prepareStatementForUpdate(PreparedStatement statement, T object) throws DaoException;
 
-
     protected List<T> getAll(Connection con) throws DaoException {
         List<T> list;
         String sql = getSelectQuery();
@@ -73,7 +72,7 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Seria
         } catch (Exception e) {
             throw new DaoException(e);
         }
-        throw new DaoException("Exception while add");
+        return 0L;
     }
 
     protected void update(Connection connection, T object) throws DaoException {

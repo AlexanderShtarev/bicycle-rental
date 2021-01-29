@@ -1,5 +1,7 @@
 package com.epam.jwd.dao.mysql;
 
+import com.epam.jwd.context.ApplicationCache;
+import com.epam.jwd.context.ApplicationProperties;
 import com.epam.jwd.criteria.Criteria;
 import com.epam.jwd.dao.AbstractJDBCDao;
 import com.epam.jwd.dao.ProductDao;
@@ -8,6 +10,7 @@ import com.epam.jwd.dao.builder.QueryBuilder;
 import com.epam.jwd.dao.constant.*;
 import com.epam.jwd.domain.*;
 import com.epam.jwd.exception.DaoException;
+import com.epam.jwd.pool.DataSource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,8 +24,8 @@ public class MySqlProductDao extends AbstractJDBCDao<Product, Long> implements P
 
     private static final String SQL_SELECT_ALL_PRODUCTS =
             "SELECT product.id, product.model, product.price_per_hour,\n" +
-                    "       type.id, type.name, producer.id, producer.name,\n" +
-                    "       images.id, images.title, images.image_link\n" +
+                    "       product.type_id, type.name, product.producer_id, producer.name,\n" +
+                    "       product.image_id, images.title, images.image_link\n" +
                     "FROM product\n" +
                     "JOIN images ON images.id = product.image_id\n" +
                     "JOIN producer ON producer.id = product.producer_id\n" +
@@ -122,6 +125,18 @@ public class MySqlProductDao extends AbstractJDBCDao<Product, Long> implements P
             ps.setLong(6, product.getId());
         } catch (Exception e) {
             throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public void init() throws DaoException {
+        Connection con = null;
+        try {
+            con = DataSource.getConnection();
+            ApplicationCache.APPLICATION_CACHE.setProducts(super.getAll(con));
+            DataSource.returnConnection(con);
+        } catch (InterruptedException exception) {
+            throw new DaoException(exception);
         }
     }
 

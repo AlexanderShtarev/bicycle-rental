@@ -3,6 +3,8 @@
 <html>
 <head>
     <title>NavBar</title>
+
+    <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
@@ -33,8 +36,9 @@
                 <li><a href="<c:url value="/controller?command=to_contact_page"/>">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+
                 <!-- if user not logged in -->
-                <c:if test="${empty sessionScope.user}">
+                <c:if test="${sessionScope.user == null}">
                     <li><a href="<c:url value="/controller?command=to_register_page"/>"><span
                             class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                     <li><a href="<c:url value="/controller?command=to_login_page"/>"><span
@@ -42,11 +46,13 @@
                 </c:if>
 
                 <!-- if user logged in -->
-                <c:if test="${not empty sessionScope.user}">
-                    <li><a href="<c:url value="/controller?command=to_account_page"/>"><span
+                <c:if test="${sessionScope.user != null}">
+                    <li><a href="<c:url value="/controller?command=to_profile_page"/>"><span
                             class="glyphicon glyphicon-user"></span> Your Account</a></li>
                     <li><a href="<c:url value="/controller?command=to_cart_page"/>"><span
                             class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                    <li><a href="<c:url value="/controller?command=logout"/>"><span
+                            class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                 </c:if>
 
             </ul>

@@ -1,4 +1,4 @@
-package com.epam.jwd.controller.command.impl;
+package com.epam.jwd.controller.command.impl.user;
 
 import com.epam.jwd.controller.PageConstant;
 import com.epam.jwd.controller.RequestConstant;
@@ -10,8 +10,12 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 
 public class ToHomePageCommand extends Command {
-    ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    ProductService productService = serviceFactory.getProductService();
+    ProductService productService;
+
+    public ToHomePageCommand() {
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        productService = serviceFactory.getProductService();
+    }
 
     @Override
     public void process() throws ServletException, IOException {

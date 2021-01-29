@@ -1,4 +1,4 @@
-package com.epam.jwd.controller.command.impl;
+package com.epam.jwd.controller.command.impl.user;
 
 import com.epam.jwd.controller.PageConstant;
 import com.epam.jwd.controller.RequestConstant;
@@ -16,17 +16,21 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class CheckOtpCommand extends Command {
-    ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    UserService userService = serviceFactory.getUserService();
-    AuthService authService = serviceFactory.getAuthService();
-    MailService mailService = serviceFactory.getMailService();
+    UserService userService;
+    AuthService authService;
+    MailService mailService;
+
+    public CheckOtpCommand() {
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        userService = serviceFactory.getUserService();
+        authService = serviceFactory.getAuthService();
+        mailService = serviceFactory.getMailService();
+    }
 
     @Override
     public void process() throws ServletException, IOException {
-        HttpSession session = request.getSession();
-
         String token = request.getParameter(RequestConstant.TOKEN);
-        User user = (User) session.getAttribute(RequestConstant.USER);
+        User user = (User) request.getSession().getAttribute(RequestConstant.USER);
 
         if (user == null) {
             forward(PageConstant.LOGIN_PAGE);

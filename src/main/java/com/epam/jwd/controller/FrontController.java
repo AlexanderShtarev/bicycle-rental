@@ -25,9 +25,7 @@ public class FrontController extends HttpServlet {
 
     private void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String commandName = request.getParameter("command");
-        System.out.println(commandName);
         Command command = CommandFactory.getCommand(commandName);
-        System.out.println(command.getClass().toString());
         command.init(getServletContext(), request, response);
         command.process();
     }

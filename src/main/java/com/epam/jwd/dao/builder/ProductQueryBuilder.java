@@ -54,10 +54,6 @@ public class ProductQueryBuilder extends QueryBuilder {
             }
         }
 
-        if (prCriteria.getImage().getId() != null) {
-            appendValue(parameters, ImageFieldsConstant.IMAGE_ID, prCriteria.getImage().getId());
-        }
-
         return sqlGetAllProducts + " WHERE " + toStatement(parameters);
     }
 

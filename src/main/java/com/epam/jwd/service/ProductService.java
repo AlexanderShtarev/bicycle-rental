@@ -13,4 +13,10 @@ public interface ProductService {
 
     Product getProductById(Long id);
 
+    boolean addProduct(Product product);
+
+    boolean deleteProduct(Long productId);
+
+    List<Product> getAllProducts();
+
 }

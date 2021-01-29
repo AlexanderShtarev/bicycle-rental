@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface ProductDao {
 
+    void init() throws DaoException;
+
     List<Product> getAll(Connection con) throws DaoException;
 
     List<Product> getByCriteria(Connection con, Criteria<? extends Product> criteria) throws DaoException;

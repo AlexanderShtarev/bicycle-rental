@@ -1,4 +1,4 @@
-package com.epam.jwd.controller.command.impl;
+package com.epam.jwd.controller.command.impl.user;
 
 import com.epam.jwd.controller.PageConstant;
 import com.epam.jwd.controller.RequestConstant;
@@ -21,10 +21,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class RegisterCommand extends Command {
-    ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    UserService userService = serviceFactory.getUserService();
-    AuthService authService = serviceFactory.getAuthService();
-    MailService mailService = serviceFactory.getMailService();
+    UserService userService;
+    AuthService authService;
+    MailService mailService;
+
+    public RegisterCommand() {
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        userService = serviceFactory.getUserService();
+        authService = serviceFactory.getAuthService();
+        mailService = serviceFactory.getMailService();
+    }
 
     @Override
     public void process() throws ServletException, IOException {
@@ -33,15 +39,13 @@ public class RegisterCommand extends Command {
         String password = request.getParameter(RequestConstant.PASSWORD);
         String cPassword = request.getParameter(RequestConstant.C_PASSWORD);
 
-        HttpSession session = request.getSession();
-
         if (password.equals(cPassword)) {
             User user = createUser(name, email, password);
             if (authService.register(user)) {
                 VerificationToken token = mailService.createVerificationToken(user);
                 mailService.send();
 
-                session.setAttribute(RequestConstant.USER, user);
+                request.getSession().setAttribute(RequestConstant.USER, user);
                 forward(PageConstant.OTP_PAGE);
             } else {
                 request.setAttribute(RequestConstant.ERROR, "User already exist");

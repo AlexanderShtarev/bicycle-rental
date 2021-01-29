@@ -36,7 +36,7 @@
                                 <input type="email" class="form-control" name="name" id="inputName"
                                        placeholder="Full Name"
                                        required>
-                                <div class="invalid-feedback">Please enter a valid name.</div>
+                                <div class="valid-feedback">Looks good!</div>
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control" name="email" id="inputEmail"
@@ -46,7 +46,8 @@
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" name="password" id="inputPassword"
-                                       placeholder="Password" required>
+                                       placeholder="Password"
+                                       required>
                                 <div class="invalid-feedback">Please enter your password to continue.</div>
                                 <small class="form-text text-muted">
                                     Your password must be 8-20 characters long, contain letters, numbers and special
@@ -54,7 +55,7 @@
                                 </small>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" name="cPassword" id="inputCpassword"
+                                <input type="email" class="form-control" name="cPassword" id="inputCPassword"
                                        placeholder="Confirm Password"
                                        required>
                                 <div class="invalid-feedback">Password not match</div>

@@ -63,4 +63,25 @@ public class ProductServiceImpl implements ProductService {
         });
     }
 
+    @Override
+    public boolean addProduct(Product product) {
+        Long id = transactionHandler.transactional(con ->
+                productDao.add(con, product));
+        return id > 0;
+    }
+
+    @Override
+    public boolean deleteProduct(Long productId) {
+        return transactionHandler.transactional(con -> {
+                productDao.delete(con, productId);
+        return true;
+        });
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return transactionHandler.transactional(con ->
+                productDao.getAll(con));
+    }
+
 }
