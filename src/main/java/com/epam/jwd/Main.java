@@ -1,19 +1,28 @@
 package com.epam.jwd;
 
-import com.epam.jwd.criteria.UserCriteria;
-import com.epam.jwd.dao.*;
-import com.epam.jwd.dao.mysql.MySqlInventoryDao;
-import com.epam.jwd.domain.User;
+import com.epam.jwd.domain.Product;
+import com.epam.jwd.validator.AnnotationValidator;
+import com.epam.jwd.validator.rule.LengthRule;
+import com.epam.jwd.validator.rule.NotEmptyRule;
+import com.epam.jwd.validator.rule.Rule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        TransactionHandler transactionHandler = new TransactionHandler();
-        DaoFactory daoFactory = DaoFactory.getDaoFactory(DaoFactory.DaoType.MYSQL);
 
-        InventoryDao inventoryDao = daoFactory.getInventoryDao();
+            NotEmptyRule notEmptyRule = new NotEmptyRule();
+            LengthRule lengthRule = new LengthRule();
+            List<Rule<?>> rules = new ArrayList<>() {{
+                add(notEmptyRule);
+                add(lengthRule);
+            }};
+            Product test = Product.builder().model("").build();
+            AnnotationValidator annotationValidator
+                    = new AnnotationValidator(rules);
+            annotationValidator.validate(test);
 
     }
 
