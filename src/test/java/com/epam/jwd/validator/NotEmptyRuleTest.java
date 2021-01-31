@@ -1,6 +1,7 @@
 package com.epam.jwd.validator;
 
 import com.epam.jwd.context.annotation.NotEmpty;
+import com.epam.jwd.exception.ValidationException;
 import com.epam.jwd.validator.rule.NotEmptyRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,7 +51,7 @@ public class NotEmptyRuleTest {
     }
 
     private void checkObjectWithException(String s) {
-        assertThrows(NullPointerException.class,
+        assertThrows(ValidationException.class,
                 () -> notEmptyRule.check(checkNotEmpty, "firstString", s));
     }
 

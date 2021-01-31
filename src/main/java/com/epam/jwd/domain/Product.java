@@ -1,12 +1,29 @@
 package com.epam.jwd.domain;
 
+import com.epam.jwd.context.annotation.Column;
+import com.epam.jwd.context.annotation.Length;
+import com.epam.jwd.context.annotation.NotEmpty;
+
 import java.util.Objects;
 
 public class Product extends Entity implements Identified<Long> {
+
+    @NotEmpty
     ProductProducer producer;
+
+    @NotEmpty
+    @Column(name = "model")
+    @Length(min = 1, max = 128)
     String model;
+
+    @NotEmpty
     ProductType type;
+
+    @NotEmpty
     Image image;
+
+    @NotEmpty
+    @Column(name = "price_per_hour")
     Double pricePerHour;
 
     public Product() {

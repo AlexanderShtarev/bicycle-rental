@@ -64,6 +64,11 @@ public class MySqlUserDao extends AbstractJDBCDao<User, Long> implements UserDao
     }
 
     @Override
+    protected String getCountQuery() {
+        return null;
+    }
+
+    @Override
     protected List<User> parseResultSet(ResultSet rs) throws DaoException {
         List<User> list = new LinkedList<>();
         try {

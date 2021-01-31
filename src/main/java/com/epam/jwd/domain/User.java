@@ -1,14 +1,38 @@
 package com.epam.jwd.domain;
 
+import com.epam.jwd.context.annotation.Column;
+import com.epam.jwd.context.annotation.NotEmpty;
+import com.epam.jwd.context.annotation.Pattern;
+import com.epam.jwd.context.annotation.Table;
+
 import java.util.List;
 import java.util.Objects;
 
+@Table(name = "users")
 public class User extends Entity implements Identified<Long> {
+
+    @NotEmpty
+    @Column(name = "name")
     private String name;
+
+    @NotEmpty
+    @Pattern(pattern = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")
+    @Column(name = "email")
     private String email;
+
+    @NotEmpty
+    @Pattern(pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
+    @Column(name = "password")
     private String password;
+
+    @NotEmpty
+    @Column(name = "balance")
     private Double balance;
+
+    @NotEmpty
     private List<UserRole> roles;
+
+    @NotEmpty
     private UserStatus status;
 
     public User() {

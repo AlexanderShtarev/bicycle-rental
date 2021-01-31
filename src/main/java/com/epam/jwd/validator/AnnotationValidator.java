@@ -36,8 +36,7 @@ public class AnnotationValidator implements EntityValidator {
     }
 
     private void doCheck(Annotation annotation, String field, Object fieldValue) {
-        Rule r = rules.get(annotation.annotationType());
-        System.out.println(r);
+        Rule r = rules.get(annotation.annotationType());;
         if (r == null) return;
 
         r.check(annotation, field, fieldValue);

@@ -1,6 +1,7 @@
 package com.epam.jwd.validator;
 
 import com.epam.jwd.context.annotation.Length;
+import com.epam.jwd.exception.ValidationException;
 import com.epam.jwd.validator.rule.LengthRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,7 +40,7 @@ public class CheckLengthTest {
     }
 
     private void callCheck(String s) {
-        assertThrows(IllegalStateException.class,
+        assertThrows(ValidationException.class,
                 () -> lengthRule.check(lengthAnnotation, "firstString", s));
     }
 

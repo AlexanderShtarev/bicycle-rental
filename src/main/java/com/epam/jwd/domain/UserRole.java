@@ -1,11 +1,14 @@
 package com.epam.jwd.domain;
 
+import com.epam.jwd.context.annotation.NotEmpty;
+
 public enum UserRole  {
     CLIENT(1),
     ADMIN(2),
     UNKNOWN(3);
 
-    private final int id;
+    @NotEmpty
+    private final Integer id;
 
     UserRole(Integer id) {
         this.id = id;

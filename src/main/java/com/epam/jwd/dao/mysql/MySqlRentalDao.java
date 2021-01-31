@@ -67,6 +67,11 @@ public class MySqlRentalDao extends AbstractJDBCDao<Rental, Long> implements Ren
     }
 
     @Override
+    protected String getCountQuery() {
+        return null;
+    }
+
+    @Override
     protected List<Rental> parseResultSet(ResultSet rs) throws DaoException {
         List<Rental> list = new LinkedList<>();
         try {

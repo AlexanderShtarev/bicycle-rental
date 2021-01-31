@@ -23,6 +23,8 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Seria
 
     public abstract String getDeleteQuery();
 
+    protected abstract String getCountQuery();
+
     protected abstract List<T> parseResultSet(ResultSet rs) throws DaoException;
 
     protected abstract void prepareStatementForInsert(PreparedStatement statement, T object) throws DaoException;
@@ -42,6 +44,7 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Seria
     }
 
     protected List<T> getByCriteria(Connection con, Criteria<? extends Entity> criteria, QueryBuilder builder) throws DaoException {
+
         List<T> list;
         String sql = builder.createQuery(criteria, getSelectQuery());
         try (PreparedStatement statement = con.prepareStatement(sql)) {
@@ -104,5 +107,17 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Seria
             throw new DaoException(e);
         }
     }
+
+    protected Long count(Connection connection) {
+        String sql = getCountQuery();
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getLong(1);
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+    }
+
 
 }

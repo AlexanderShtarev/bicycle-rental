@@ -60,6 +60,11 @@ public class MySqlStoreDao extends AbstractJDBCDao<Store, Long> implements Store
     }
 
     @Override
+    protected String getCountQuery() {
+        return null;
+    }
+
+    @Override
     protected List<Store> parseResultSet(ResultSet rs) throws DaoException {
         List<Store> list = new LinkedList<>();
         try {

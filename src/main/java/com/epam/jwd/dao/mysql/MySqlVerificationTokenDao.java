@@ -62,6 +62,11 @@ public class MySqlVerificationTokenDao extends AbstractJDBCDao<VerificationToken
     }
 
     @Override
+    protected String getCountQuery() {
+        return null;
+    }
+
+    @Override
     protected List<VerificationToken> parseResultSet(ResultSet rs) throws DaoException {
         List<VerificationToken> list = new LinkedList<>();
         try {

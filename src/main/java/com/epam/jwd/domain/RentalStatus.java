@@ -1,5 +1,7 @@
 package com.epam.jwd.domain;
 
+import com.epam.jwd.context.annotation.NotEmpty;
+
 public enum RentalStatus {
     PENDING_VERIFICATION(1),
     AWAITING_APPROVAL(2),
@@ -9,6 +11,7 @@ public enum RentalStatus {
     IN_PROGRESS(6),
     COMPLETED(7);
 
+    @NotEmpty
     private final Integer id;
 
     RentalStatus(Integer id) {

@@ -59,6 +59,11 @@ public class MySqlInventoryDao extends AbstractJDBCDao<Inventory, Long> implemen
     }
 
     @Override
+    protected String getCountQuery() {
+        return null;
+    }
+
+    @Override
     protected List<Inventory> parseResultSet(ResultSet rs) throws DaoException {
         List<Inventory> list = new LinkedList<>();
         try {

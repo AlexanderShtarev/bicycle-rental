@@ -1,7 +1,5 @@
 package com.epam.jwd.dao.mysql;
 
-import com.epam.jwd.context.ApplicationCache;
-import com.epam.jwd.context.ApplicationProperties;
 import com.epam.jwd.criteria.Criteria;
 import com.epam.jwd.dao.AbstractJDBCDao;
 import com.epam.jwd.dao.ProductDao;
@@ -10,7 +8,6 @@ import com.epam.jwd.dao.builder.QueryBuilder;
 import com.epam.jwd.dao.constant.*;
 import com.epam.jwd.domain.*;
 import com.epam.jwd.exception.DaoException;
-import com.epam.jwd.pool.DataSource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -71,6 +68,11 @@ public class MySqlProductDao extends AbstractJDBCDao<Product, Long> implements P
     }
 
     @Override
+    protected String getCountQuery() {
+        return null;
+    }
+
+    @Override
     protected List<Product> parseResultSet(ResultSet rs) throws DaoException {
         List<Product> list = new LinkedList<>();
         try {
@@ -125,18 +127,6 @@ public class MySqlProductDao extends AbstractJDBCDao<Product, Long> implements P
             ps.setLong(6, product.getId());
         } catch (Exception e) {
             throw new DaoException(e);
-        }
-    }
-
-    @Override
-    public void init() throws DaoException {
-        Connection con = null;
-        try {
-            con = DataSource.getConnection();
-            ApplicationCache.APPLICATION_CACHE.setProducts(super.getAll(con));
-            DataSource.returnConnection(con);
-        } catch (InterruptedException exception) {
-            throw new DaoException(exception);
         }
     }
 

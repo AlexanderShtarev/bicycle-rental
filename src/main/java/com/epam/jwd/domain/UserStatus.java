@@ -1,10 +1,13 @@
 package com.epam.jwd.domain;
 
+import com.epam.jwd.context.annotation.NotEmpty;
+
 public enum UserStatus {
     ACTIVE(1),
     NON_ACTIVE(2),
     BLOCKED(3);
 
+    @NotEmpty
     private final Integer id;
 
     UserStatus(Integer id) {

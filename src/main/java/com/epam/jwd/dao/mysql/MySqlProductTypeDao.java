@@ -65,6 +65,11 @@ public class MySqlProductTypeDao extends AbstractJDBCDao<ProductType, Long> impl
     }
 
     @Override
+    protected String getCountQuery() {
+        return null;
+    }
+
+    @Override
     protected List<ProductType> parseResultSet(ResultSet rs) throws DaoException {
         List<ProductType> list = new LinkedList<>();
         try {

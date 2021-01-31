@@ -1,9 +1,15 @@
 package com.epam.jwd.domain;
 
+import com.epam.jwd.context.annotation.NotEmpty;
+
 import java.util.Objects;
 
 public class Inventory extends Entity implements Identified<Long> {
+
+    @NotEmpty
     Store store;
+
+    @NotEmpty
     Product product;
 
     public Inventory() {
