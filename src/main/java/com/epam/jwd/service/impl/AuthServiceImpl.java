@@ -35,43 +35,5 @@ public class AuthServiceImpl implements AuthService {
         return instance;
     }
 
-    @Override
-    public boolean login(String password, String hashPassword) {
-        return SCryptUtil.check(password, hashPassword);
-    }
-
-    @Override
-    public boolean register(User user) {
-        boolean result = false;
-        boolean userExist = checkIfUserExist(user.getEmail());
-        if (!userExist) {
-            scryptPassword(user);
-            result = addUser(user);
-        }
-        return result;
-    }
-
-    @Override
-    public boolean checkIfUserExist(String email) {
-        UserCriteria criteria = UserCriteria.builder().email(email).build();
-        return transactionHandler.transactional(con -> {
-            List<User> existingUser = userDao.getByCriteria(con, criteria);
-            return existingUser.size() > 0;
-        });
-    }
-
-    private boolean addUser(User user) {
-        return transactionHandler.transactional(con -> {
-            userDao.add(con, user);
-            //todo
-            return true;
-        });
-    }
-
-    private void scryptPassword(User user) {
-        String hashed = SCryptUtil.scrypt(user.getPassword(), 16, 16, 16);
-        user.setPassword(hashed);
-    }
-
 
 }

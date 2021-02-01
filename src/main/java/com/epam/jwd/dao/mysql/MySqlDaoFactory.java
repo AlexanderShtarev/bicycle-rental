@@ -52,4 +52,9 @@ public class MySqlDaoFactory extends DaoFactory {
         return MySqlVerificationTokenDao.getInstance();
     }
 
+    @Override
+    public UserRoleDao getUserRoleDao() {
+        return MySqlUserRoleDao.getInstance();
+    }
+
 }

@@ -1,12 +1,18 @@
-/*
 package com.epam.jwd.util;
 
+import com.epam.jwd.context.MailProperties;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
 
 public class MailSenderUtil {
 
     public void sendEmail(String body, String subject, String recipient) throws MessagingException {
-        MailConfig mailConfig = new MailConfig();
+        MailProperties mailConfig = new MailProperties();
         Properties props = new Properties();
 
         props.put("mail.smtp.from", mailConfig.getUsername());
@@ -18,8 +24,8 @@ public class MailSenderUtil {
         props.put("mail.smtp.socketFactory.fallback", "false");
         props.put("mail.smtp.starttls.enable", "true");
 
-        final String from = "***************";
-        final String password = "**************";
+        final String from = mailConfig.getUsername();
+        final String password = mailConfig.getPassword();
 
         Session session = Session.getDefaultInstance(props,
                 new Authenticator() {
@@ -65,4 +71,3 @@ public class MailSenderUtil {
     }
 
 }
-*/

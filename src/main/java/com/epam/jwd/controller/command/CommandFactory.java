@@ -1,6 +1,6 @@
 package com.epam.jwd.controller.command;
 
-import com.epam.jwd.controller.command.impl.user.ToHomePageCommand;
+import com.epam.jwd.controller.command.impl.ToHomePageCommand;
 import com.mysql.cj.util.StringUtils;
 
 public class CommandFactory {

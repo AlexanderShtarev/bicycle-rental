@@ -1,4 +1,4 @@
-package com.epam.jwd.controller.command.impl.user;
+package com.epam.jwd.controller.command.impl;
 
 import com.epam.jwd.controller.PageConstant;
 import com.epam.jwd.controller.RequestConstant;

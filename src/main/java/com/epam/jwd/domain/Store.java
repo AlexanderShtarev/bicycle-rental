@@ -1,6 +1,5 @@
 package com.epam.jwd.domain;
 
-import com.epam.jwd.context.annotation.Column;
 import com.epam.jwd.context.annotation.NotEmpty;
 
 import java.util.Objects;
@@ -8,11 +7,9 @@ import java.util.Objects;
 public class Store extends Entity implements Identified<Long> {
 
     @NotEmpty
-    @Column(name = "address")
     String address;
 
     @NotEmpty
-    @Column(name = "phone")
     String phone;
 
     public Store() {

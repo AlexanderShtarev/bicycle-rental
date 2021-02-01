@@ -140,7 +140,7 @@ public class MySqlRentalDao extends AbstractJDBCDao<Rental, Long> implements Ren
     @Override
     public Long add(Connection con, Rental rental) throws DaoException {
         Long id = super.add(con, rental);
-        rental.setId(id);
+        /*rental.setId(id);*/
         return id;
     }
 

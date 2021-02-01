@@ -15,4 +15,6 @@ public interface VerificationTokenDao {
 
     void delete(Connection con, Long tokenId) throws DaoException;
 
+    VerificationToken getByToken(Connection con, String token);
+
 }

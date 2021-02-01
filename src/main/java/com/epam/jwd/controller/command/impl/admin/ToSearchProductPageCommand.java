@@ -1,3 +1,4 @@
+/*
 package com.epam.jwd.controller.command.impl.admin;
 
 import com.epam.jwd.controller.PageConstant;
@@ -14,3 +15,4 @@ public class ToSearchProductPageCommand extends Command {
     }
 
 }
+*/

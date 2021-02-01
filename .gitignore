@@ -1,6 +1,5 @@
 .idea
 build/
-mail.properties
 *.iml
 target/
 log/

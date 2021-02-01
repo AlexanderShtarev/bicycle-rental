@@ -1,6 +1,6 @@
 package com.epam.jwd.listener;
 
-import com.epam.jwd.context.cache.AppCache;
+import com.epam.jwd.context.ApplicationContext;
 import com.epam.jwd.pool.ConnectionPool;
 
 import javax.servlet.ServletContextEvent;
@@ -10,8 +10,7 @@ public class AppInitListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
-        ConnectionPool.getInstance();
-        AppCache.APPLICATION_CACHE.init();
+        ApplicationContext.APPLICATION_CONTEXT.init();
     }
 
     @Override

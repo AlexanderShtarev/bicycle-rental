@@ -18,7 +18,7 @@ public class PageConstant {
 
     public static final String ADD_PRODUCT_PAGE = "admin/add-product";
 
-    public static final String EDIT_PRODUCT_PAGE = "admin/update-product";
+    public static final String UPDATE_PRODUCT_PAGE = "admin/update-product";
 
     public static final String SEARCH_PRODUCT_PAGE = "admin/search-product";
 

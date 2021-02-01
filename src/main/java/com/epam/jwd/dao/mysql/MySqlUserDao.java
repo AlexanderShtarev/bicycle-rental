@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class MySqlUserDao extends AbstractJDBCDao<User, Long> implements UserDao {
     private static MySqlUserDao instance;
@@ -129,9 +130,14 @@ public class MySqlUserDao extends AbstractJDBCDao<User, Long> implements UserDao
     }
 
     @Override
+    public Optional<User> getSingleUserByCriteria(Connection con, Criteria<? extends User> criteria) throws DaoException {
+        return Optional.empty();
+    }
+
+    @Override
     public Long add(Connection con, User user) throws DaoException {
         Long id = super.add(con, user);
-        user.setId(id);
+        /*user.setId(id);*/
         return id;
     }
 

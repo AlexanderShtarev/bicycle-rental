@@ -32,5 +32,7 @@ public abstract class DaoFactory {
     public abstract UserDao getUserDao();
 
     public abstract VerificationTokenDao getVerificationTokenDao();
+    
+    public abstract UserRoleDao getUserRoleDao();
 
 }

@@ -1,9 +1,8 @@
-package com.epam.jwd.controller.command.impl.user;
+package com.epam.jwd.controller.command.impl;
 
 import com.epam.jwd.controller.PageConstant;
 import com.epam.jwd.controller.RequestConstant;
 import com.epam.jwd.controller.command.Command;
-import com.epam.jwd.criteria.VerificationTokenCriteria;
 import com.epam.jwd.domain.User;
 import com.epam.jwd.domain.VerificationToken;
 import com.epam.jwd.service.AuthService;
@@ -30,19 +29,18 @@ public class CheckOtpCommand extends Command {
     @Override
     public void process() throws ServletException, IOException {
         String token = request.getParameter(RequestConstant.TOKEN);
-        User user = (User) request.getSession().getAttribute(RequestConstant.USER);
+        HttpSession session = request.getSession();
+
+        User user = (User) session.getAttribute(RequestConstant.USER);
 
         if (user == null) {
             forward(PageConstant.LOGIN_PAGE);
         }
 
-        VerificationTokenCriteria criteria = VerificationTokenCriteria.builder().token(token).build();
-        VerificationToken verificationToken = mailService.findTokenByCriteria(criteria);
+        VerificationToken verificationToken = mailService.getVerificationToken(token);
 
-        if (verificationToken != null) {
-            if (mailService.validateToken(verificationToken, user)) {
-                forward(PageConstant.HOME_PAGE);
-            }
+        if (verificationToken != null && verificationToken.getUser().equals(user)) {
+            forward(PageConstant.HOME_PAGE);
         } else {
             request.setAttribute(RequestConstant.ERROR, "Wrong token");
             forward(PageConstant.ERROR_PAGE);

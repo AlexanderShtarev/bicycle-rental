@@ -1,12 +1,7 @@
 package com.epam.jwd.service.impl;
 
-import com.epam.jwd.criteria.Criteria;
-import com.epam.jwd.criteria.ProductCriteria;
 import com.epam.jwd.dao.*;
-import com.epam.jwd.domain.Product;
 import com.epam.jwd.service.ProductService;
-
-import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
     TransactionHandler transactionHandler;
@@ -38,50 +33,6 @@ public class ProductServiceImpl implements ProductService {
         return instance;
     }
 
-    @Override
-    public List<Product> getFeaturedProducts() {
-        return transactionHandler.transactional(con ->
-                productDao.getAll(con));
-    }
 
-    @Override
-    public List<Product> getProductsByCriteria(Criteria<? extends Product> criteria) {
-        return transactionHandler.transactional(con ->
-                productDao.getByCriteria(con, criteria));
-    }
-
-    @Override
-    public Product getProductById(Long id) {
-        return transactionHandler.transactional(con -> {
-            Product product = null;
-            ProductCriteria criteria = ProductCriteria.builder().id(id).build();
-            List<Product> products = productDao.getByCriteria(con, criteria);
-            if (products.size() > 0) {
-                product = products.get(0);
-            }
-            return product;
-        });
-    }
-
-    @Override
-    public boolean addProduct(Product product) {
-        Long id = transactionHandler.transactional(con ->
-                productDao.add(con, product));
-        return id > 0;
-    }
-
-    @Override
-    public boolean deleteProduct(Long productId) {
-        return transactionHandler.transactional(con -> {
-                productDao.delete(con, productId);
-        return true;
-        });
-    }
-
-    @Override
-    public List<Product> getAllProducts() {
-        return transactionHandler.transactional(con ->
-                productDao.getAll(con));
-    }
 
 }

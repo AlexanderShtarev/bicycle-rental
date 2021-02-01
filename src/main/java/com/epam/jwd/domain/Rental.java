@@ -1,6 +1,5 @@
 package com.epam.jwd.domain;
 
-import com.epam.jwd.context.annotation.Column;
 import com.epam.jwd.context.annotation.NotEmpty;
 
 import java.util.Date;
@@ -15,18 +14,14 @@ public class Rental extends Entity implements Identified<Long> {
     Inventory inventory;
 
     @NotEmpty
-    @Column(name = "rental_date")
     Date rentalDate;
 
-    @Column(name = "return_date")
     Date returnDate;
 
     @NotEmpty
-    @Column(name = "product_qty")
     Integer productQty;
 
     @NotEmpty
-    @Column(name = "total")
     Double total;
 
     @NotEmpty

@@ -2,7 +2,7 @@ package com.epam.jwd.domain;
 
 import com.epam.jwd.context.annotation.NotEmpty;
 
-public enum UserRole  {
+public enum UserRole implements Identified<Integer>  {
     CLIENT(1),
     ADMIN(2),
     UNKNOWN(3);
@@ -14,6 +14,7 @@ public enum UserRole  {
         this.id = id;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }

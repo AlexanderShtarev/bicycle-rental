@@ -118,13 +118,18 @@ public class MySqlVerificationTokenDao extends AbstractJDBCDao<VerificationToken
     @Override
     public Long add(Connection con, VerificationToken token) throws DaoException {
         Long id = super.add(con, token);
-        token.setId(id);
+        /*token.setId(id);*/
         return id;
     }
 
     @Override
     public void delete(Connection con, Long tokenId) throws DaoException {
         super.delete(con, tokenId);
+    }
+
+    @Override
+    public VerificationToken getByToken(Connection con, String token) {
+        return null;
     }
 
 }

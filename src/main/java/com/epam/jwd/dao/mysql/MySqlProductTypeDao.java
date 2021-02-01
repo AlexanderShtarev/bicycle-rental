@@ -118,7 +118,7 @@ public class MySqlProductTypeDao extends AbstractJDBCDao<ProductType, Long> impl
     @Override
     public Long add(Connection con, ProductType type) throws DaoException {
         Long id = super.add(con, type);
-        type.setId(id);
+        /*type.setId(id);*/
         return id;
     }
 

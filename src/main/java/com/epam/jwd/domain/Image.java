@@ -1,17 +1,14 @@
 package com.epam.jwd.domain;
 
-import com.epam.jwd.context.annotation.Column;
 import com.epam.jwd.context.annotation.Length;
 
 import java.util.Objects;
 
 public class Image extends Entity implements Identified<Long> {
 
-    @Column(name = "title")
     @Length(min = 1, max = 128)
     String title;
 
-    @Column(name = "image_link")
     String imageLink;
 
 

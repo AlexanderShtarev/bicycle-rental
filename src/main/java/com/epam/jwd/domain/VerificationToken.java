@@ -1,6 +1,5 @@
 package com.epam.jwd.domain;
 
-import com.epam.jwd.context.annotation.Column;
 import com.epam.jwd.context.annotation.NotEmpty;
 
 import java.util.Date;
@@ -10,11 +9,9 @@ import java.util.UUID;
 public class VerificationToken extends Entity implements Identified<Long> {
 
     @NotEmpty
-    @Column(name = "token")
     private String token;
 
     @NotEmpty
-    @Column(name = "created_date")
     private Date createdDate;
 
     @NotEmpty

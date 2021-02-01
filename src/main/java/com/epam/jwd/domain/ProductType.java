@@ -1,6 +1,5 @@
 package com.epam.jwd.domain;
 
-import com.epam.jwd.context.annotation.Column;
 import com.epam.jwd.context.annotation.Length;
 import com.epam.jwd.context.annotation.NotEmpty;
 
@@ -9,8 +8,7 @@ import java.util.Objects;
 public class ProductType extends Entity implements Identified<Long> {
 
     @NotEmpty
-    @Column(name = "name")
-            @Length(max = 128)
+    @Length(max = 128)
     String name;
 
     public ProductType(ProductType.Builder builder) {

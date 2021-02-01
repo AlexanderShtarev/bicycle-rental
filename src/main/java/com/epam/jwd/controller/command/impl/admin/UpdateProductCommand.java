@@ -1,3 +1,4 @@
+/*
 package com.epam.jwd.controller.command.impl.admin;
 
 import com.epam.jwd.controller.RequestConstant;
@@ -22,3 +23,4 @@ public class UpdateProductCommand extends Command {
     }
 
 }
+*/

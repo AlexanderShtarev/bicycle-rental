@@ -4,16 +4,21 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LocaleManagerUtil {
-    private static LocaleManagerUtil instance = new LocaleManagerUtil();
-    private Locale current;
+    private static final String PAGE_CONTENT = "page_content";
+
+    private static LocaleManagerUtil instance;
+    private Locale locale;
     private ResourceBundle resourceBundle;
 
     private LocaleManagerUtil() {
-        current = new Locale("en","US");
-        resourceBundle = ResourceBundle.getBundle("text", current);
+        locale = new Locale("en","US");
+        resourceBundle = ResourceBundle.getBundle(PAGE_CONTENT, locale);
     }
 
     public static LocaleManagerUtil getInstance() {
+        if (instance == null) {
+            instance = new LocaleManagerUtil();
+        }
         return instance;
     }
 
@@ -22,13 +27,13 @@ public class LocaleManagerUtil {
     }
 
     public void setRussian(){
-        current = new Locale("ru","RU");
-        resourceBundle = ResourceBundle.getBundle("text", current);
+        locale = new Locale("ru","RU");
+        resourceBundle = ResourceBundle.getBundle(PAGE_CONTENT, locale);
     }
 
     public void setEnglish(){
-        current = new Locale("en","US");
-        resourceBundle = ResourceBundle.getBundle("text", current);
+        locale = new Locale("en","US");
+        resourceBundle = ResourceBundle.getBundle(PAGE_CONTENT, locale);
     }
 
 }

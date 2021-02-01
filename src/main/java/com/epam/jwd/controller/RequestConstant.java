@@ -28,4 +28,5 @@ public class RequestConstant {
 
     public static final String COMMAND = "command";
 
+    public static final String LOCALE = "locale";
 }
