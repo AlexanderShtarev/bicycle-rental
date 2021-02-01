@@ -2,21 +2,22 @@ package com.epam.jwd.dao;
 
 import com.epam.jwd.criteria.Criteria;
 import com.epam.jwd.domain.Product;
-import com.epam.jwd.exception.DaoException;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductDao {
 
-    List<Product> getAll(Connection con) throws DaoException;
+    List<Product> getProductsByCriteria(Criteria<? extends Product> criteria);
 
-    List<Product> getByCriteria(Connection con, Criteria<? extends Product> criteria) throws DaoException;
+    Optional<Product> getSingleProductByCriteria(Criteria<? extends Product> criteria);
 
-    Long add(Connection con, Product product) throws DaoException;
+    List<Product> findAll();
 
-    void update(Connection con, Product product) throws DaoException;
+    void update(Connection con, Product product);
 
-    void delete(Connection con, Long productId) throws DaoException;
+    Boolean deleteById(Connection con, Long productId);
 
+    Product persist(Connection con, Product product);
 }

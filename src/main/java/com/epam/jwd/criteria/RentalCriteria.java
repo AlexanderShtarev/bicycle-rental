@@ -18,7 +18,7 @@ public class RentalCriteria extends Criteria<Rental> {
     Double total;
     RentalStatus status;
 
-    public RentalCriteria(Criteria.Builder<? extends Criteria.Builder> builder) {
+    public RentalCriteria(Criteria.Builder<? extends Builder> builder) {
         super(builder);
     }
 

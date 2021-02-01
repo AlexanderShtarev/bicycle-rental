@@ -1,8 +1,6 @@
 package com.epam.jwd.domain;
 
-import com.epam.jwd.context.annotation.NotEmpty;
-import com.epam.jwd.context.annotation.Pattern;
-import com.epam.jwd.context.annotation.Table;
+import com.epam.jwd.context.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,6 +9,7 @@ import java.util.Objects;
 public class User extends Entity implements Identified<Long> {
 
     @NotEmpty
+    @Column(name = "another!")
     private String name;
 
     @NotEmpty
@@ -22,12 +21,14 @@ public class User extends Entity implements Identified<Long> {
     private String password;
 
     @NotEmpty
+    @Column(name = "balance")
     private Double balance;
 
     @NotEmpty
     private List<UserRole> roles;
 
     @NotEmpty
+    @Another(tClass = UserStatus.class, name = "status_id")
     private UserStatus status;
 
     public User() {
@@ -44,6 +45,10 @@ public class User extends Entity implements Identified<Long> {
 
     public User(User.Builder builder) {
 
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

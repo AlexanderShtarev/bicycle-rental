@@ -1,5 +1,6 @@
 package com.epam.jwd.service.impl;
 
+import com.epam.jwd.criteria.VerificationTokenCriteria;
 import com.epam.jwd.dao.DaoFactory;
 import com.epam.jwd.dao.TransactionHandler;
 import com.epam.jwd.dao.UserDao;
@@ -39,13 +40,14 @@ public class MailServiceImpl implements MailService {
     public void sendVerificationToken(User user) {
         VerificationToken verificationToken = new VerificationToken(user);
         transactionHandler.transactional(con ->
-                tokenDao.add(con, verificationToken));
+                tokenDao.persist(con, verificationToken));
     }
 
     @Override
     public VerificationToken getVerificationToken(String token) {
+        VerificationTokenCriteria criteria = VerificationTokenCriteria.builder().token(token).build();
         return transactionHandler.transactional(con ->
-                tokenDao.getByToken(con, token));
+                tokenDao.getSingleTokenByCriteria(criteria)).orElse(null);
     }
 
 }

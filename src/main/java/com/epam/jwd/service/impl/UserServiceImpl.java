@@ -47,21 +47,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsersByCriteria(Criteria<? extends User> userCriteria) {
-        Collection<User> userCache = ApplicationContext.APPLICATION_CONTEXT.getCache(User.class);
         UserCriteria criteria = (UserCriteria) userCriteria;
-        return userCache.stream().filter(user ->
-                criteria.getId() == null || user.getId().equals(criteria.getId())
-                        && criteria.getName() == null || user.getName().equals(criteria.getName())
-                        && criteria.getStatus() == null || user.getStatus().equals(criteria.getStatus())
-                        && criteria.getEmail() == null || user.getEmail().equals(criteria.getEmail())
-                        && criteria.getBalance() == null || user.getBalance().equals(criteria.getBalance())
-                        && criteria.getPassword() == null || user.getPassword().equals(criteria.getPassword())
-                        && criteria.getRoles() == null || user.getRoles().equals(criteria.getRoles()
-                )).collect(Collectors.toList());
+        return this.filterByCriteria(criteria);
     }
 
-    @Override
-    public User getSingleUserByCriteria(Criteria<? extends User> userCriteria) {
+    private List<User> filterByCriteria(Criteria<? extends User> userCriteria) {
         Collection<User> userCache = ApplicationContext.APPLICATION_CONTEXT.getCache(User.class);
         UserCriteria criteria = (UserCriteria) userCriteria;
         return userCache.stream().filter(user ->
@@ -72,23 +62,27 @@ public class UserServiceImpl implements UserService {
                         && criteria.getBalance() == null || user.getBalance().equals(criteria.getBalance())
                         && criteria.getPassword() == null || user.getPassword().equals(criteria.getPassword())
                         && criteria.getRoles() == null || user.getRoles().equals(criteria.getRoles()))
-                .findFirst()
-                .orElseGet(() -> getSingleUserFromDb(criteria));
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public User getSingleUserByCriteria(Criteria<? extends User> userCriteria) {
+        List<User> users = this.filterByCriteria(userCriteria);
+        return users.isEmpty() ? getSingleUserFromDb((UserCriteria) userCriteria) : users.get(0);
     }
 
     private User getSingleUserFromDb(UserCriteria criteria) {
         return transactionHandler.transactional(con -> {
-            Optional<User> optional = userDao.getSingleUserByCriteria(con, criteria);
-            optional.ifPresent(value -> value.setRoles(userRoleDao.getRolesByUserId(value.getId())));
-            return optional;
+            Optional<User> user = userDao.getSingleUserByCriteria(criteria);
+            user.ifPresent(value -> value.setRoles(userRoleDao.getRolesByUserId(value.getId())));
+            return user;
         }).orElseThrow(DaoException::new);
     }
 
     @Override
     public void registerUser(User user) {
         transactionHandler.transactional(con ->
-                userDao.add(con, user));
-
+                userDao.persist(con, user));
     }
 
     @Override
@@ -96,10 +90,15 @@ public class UserServiceImpl implements UserService {
         transactionHandler.transactional(con -> {
             userDao.update(con, user);
             userRoleDao.updateUserRole(user);
-            return null;
+            return true;
         });
     }
-    
+
+    @Override
+    public void deleteUser(Long userId) {
+        transactionHandler.transactional(con ->
+                userDao.deleteById(con, userId));
+    }
 
 
 }

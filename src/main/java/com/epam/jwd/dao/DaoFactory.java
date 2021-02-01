@@ -1,6 +1,10 @@
 package com.epam.jwd.dao;
 
-import com.epam.jwd.dao.mysql.MySqlDaoFactory;
+import com.epam.jwd.dao.impl.MySqlDaoFactory;
+import com.epam.jwd.exception.DaoException;
+import com.epam.jwd.pool.DataSource;
+
+import java.sql.Connection;
 
 public abstract class DaoFactory {
 
@@ -11,7 +15,7 @@ public abstract class DaoFactory {
     public static DaoFactory getDaoFactory(DaoType db) {
         switch (db) {
             case MYSQL:
-                return MySqlDaoFactory.getInstance();
+                return MySqlDaoFactory.MY_SQL_DAO_FACTORY;
             default:
                 throw new IllegalArgumentException();
         }

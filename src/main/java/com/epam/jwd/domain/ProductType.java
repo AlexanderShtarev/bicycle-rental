@@ -1,15 +1,19 @@
 package com.epam.jwd.domain;
 
-import com.epam.jwd.context.annotation.Length;
-import com.epam.jwd.context.annotation.NotEmpty;
+import com.epam.jwd.context.annotation.*;
 
 import java.util.Objects;
 
+@Table(name = "product_type")
 public class ProductType extends Entity implements Identified<Long> {
 
     @NotEmpty
+    @Column(name = "name")
     @Length(max = 128)
     String name;
+
+    @Another(tClass = User.class, name = "user_id")
+    User user;
 
     public ProductType(ProductType.Builder builder) {
     }

@@ -12,6 +12,9 @@ public class Inventory extends Entity implements Identified<Long> {
     @NotEmpty
     Product product;
 
+    @NotEmpty
+    Integer amount;
+
     public Inventory() {
     }
 

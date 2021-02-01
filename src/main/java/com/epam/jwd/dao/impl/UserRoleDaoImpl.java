@@ -1,7 +1,8 @@
-package com.epam.jwd.dao.mysql;
+package com.epam.jwd.dao.impl;
 
-import com.epam.jwd.dao.UserRoleDao;
+import com.epam.jwd.dao.GenericDao;
 import com.epam.jwd.dao.TransactionHandler;
+import com.epam.jwd.dao.UserRoleDao;
 import com.epam.jwd.domain.User;
 import com.epam.jwd.domain.UserRole;
 import com.epam.jwd.exception.DaoException;
@@ -11,9 +12,8 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MySqlUserRoleDao implements UserRoleDao {
-
-    public static MySqlUserRoleDao instance;
+public class UserRoleDaoImpl extends GenericDao<UserRole> implements UserRoleDao {
+    public static UserRoleDaoImpl instance;
     TransactionHandler transactionHandler;
 
     private static final String SQL_GET_ROLE_BY_USER_ID =
@@ -31,7 +31,7 @@ public class MySqlUserRoleDao implements UserRoleDao {
 
     public static UserRoleDao getInstance() {
         if (instance == null)
-            instance = new MySqlUserRoleDao();
+            instance = new UserRoleDaoImpl();
         return instance;
     }
 
@@ -63,6 +63,21 @@ public class MySqlUserRoleDao implements UserRoleDao {
             }
             return true;
         });
+    }
+
+    @Override
+    protected UserRole parseResultSet(ResultSet rs) throws DaoException {
+        return null;
+    }
+
+    @Override
+    protected void prepareStatementForInsert(PreparedStatement statement, UserRole object) throws DaoException {
+
+    }
+
+    @Override
+    protected void prepareStatementForUpdate(PreparedStatement statement, UserRole object) throws DaoException {
+
     }
 
 }

@@ -3,6 +3,7 @@ package com.epam.jwd.domain;
 import com.epam.jwd.context.annotation.NotEmpty;
 
 import java.util.Date;
+import java.util.Map;
 import java.util.Objects;
 
 public class Rental extends Entity implements Identified<Long> {
@@ -11,15 +12,12 @@ public class Rental extends Entity implements Identified<Long> {
     User user;
 
     @NotEmpty
-    Inventory inventory;
+    Map<Inventory, Integer> orderedProducts;
 
     @NotEmpty
     Date rentalDate;
 
     Date returnDate;
-
-    @NotEmpty
-    Integer productQty;
 
     @NotEmpty
     Double total;

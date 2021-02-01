@@ -14,7 +14,7 @@ public class ProductCriteria extends Criteria<Product> {
     Image image;
     Double pricePerHour;
 
-    public ProductCriteria(Criteria.Builder<? extends Criteria.Builder> builder) {
+    public ProductCriteria(Criteria.Builder<? extends Builder> builder) {
         super(builder);
     }
 

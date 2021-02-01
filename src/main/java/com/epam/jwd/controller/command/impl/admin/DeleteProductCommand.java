@@ -1,6 +1,7 @@
-/*
 package com.epam.jwd.controller.command.impl.admin;
 
+import com.epam.jwd.context.ApplicationContext;
+import com.epam.jwd.context.Context;
 import com.epam.jwd.controller.PageConstant;
 import com.epam.jwd.controller.RequestConstant;
 import com.epam.jwd.controller.command.Command;
@@ -11,10 +12,11 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 
 public class DeleteProductCommand extends Command {
+    Context context = ApplicationContext.APPLICATION_CONTEXT;
     ProductService productService;
 
     public DeleteProductCommand() {
-        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        ServiceFactory serviceFactory = context.getServiceFactory();
         productService = serviceFactory.getProductService();
     }
 
@@ -33,4 +35,3 @@ public class DeleteProductCommand extends Command {
     }
 
 }
-*/

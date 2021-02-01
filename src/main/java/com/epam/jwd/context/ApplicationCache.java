@@ -2,6 +2,7 @@ package com.epam.jwd.context;
 
 import com.epam.jwd.dao.*;
 import com.epam.jwd.domain.*;
+import com.epam.jwd.service.ServiceFactory;
 
 import java.util.Collection;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -26,6 +27,7 @@ public class ApplicationCache implements Cache {
     @Override
     public <T extends Entity> Collection<T> getCache(Class<T> tClass) {
         Collection<T> cache = new CopyOnWriteArrayList<>();
+        System.out.println("from cache");
         return this.defineClass(tClass);
     }
 
@@ -41,19 +43,23 @@ public class ApplicationCache implements Cache {
 
     @Override
     public void initCache() {
-        DaoFactory daoFactory = ApplicationContext.APPLICATION_CONTEXT.getDaoFactory();
-        TransactionHandler transactionHandler = new TransactionHandler();
+        //inventoryCache.init(inventoryDao.getAll(con));
+        productCache = new CopyOnWriteArrayList<>();
+        productProducerCache = new CopyOnWriteArrayList<>();
+        productTypeCache = new CopyOnWriteArrayList<>();
+        //rentalCache = daoFactory.getRentalDao().findAll();
+        //storeCache.init(storeDao.getAll(con));
+        //userCache = daoFactory.getUserDao().findAll();
+    }
 
-        transactionHandler.transactional(con -> {
-            //inventoryCache.init(inventoryDao.getAll(con));
-            productCache = daoFactory.getProductDao().getAll(con);
-            productProducerCache = daoFactory.getProductProducerDao().getAll(con);
-            productTypeCache = daoFactory.getProductTypeDao().getAll(con);
-            rentalCache = daoFactory.getRentalDao().getAll(con);
-            //storeCache.init(storeDao.getAll(con));
-            userCache = daoFactory.getUserDao().getAll(con);
-            return true;
-        });
+    @Override
+    public void clean() {
+
+    }
+
+    @Override
+    public void clear() {
+
     }
 
     private <T extends Entity> Collection<T> defineClass(Class<? extends Entity> tClass) {
@@ -80,6 +86,7 @@ public class ApplicationCache implements Cache {
         if (tClass.equals(User.class)) {
             entities = (Collection<T>) userCache;
         }
+        System.out.println(entities);
         return entities;
     }
 

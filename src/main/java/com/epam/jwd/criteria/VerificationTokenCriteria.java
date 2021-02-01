@@ -12,7 +12,7 @@ public class VerificationTokenCriteria extends Criteria<VerificationToken> {
     private Date createdDate;
     private User user;
 
-    public VerificationTokenCriteria(Criteria.Builder<? extends Criteria.Builder> builder) {
+    public VerificationTokenCriteria(Criteria.Builder<? extends Builder> builder) {
         super(builder);
     }
 

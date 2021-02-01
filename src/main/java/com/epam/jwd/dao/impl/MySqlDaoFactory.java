@@ -1,60 +1,53 @@
-package com.epam.jwd.dao.mysql;
+package com.epam.jwd.dao.impl;
 
 import com.epam.jwd.dao.*;
 
 public class MySqlDaoFactory extends DaoFactory {
-    private static MySqlDaoFactory instance;
-
-    public static DaoFactory getInstance() {
-        if (instance == null)
-            instance = new MySqlDaoFactory();
-        return instance;
-    }
-
+    public static final MySqlDaoFactory MY_SQL_DAO_FACTORY = new MySqlDaoFactory();
 
     @Override
     public InventoryDao getInventoryDao() {
-        return MySqlInventoryDao.getInstance();
+        return InventoryDaoImpl.getInstance();
     }
 
     @Override
     public ProductDao getProductDao() {
-        return MySqlProductDao.getInstance();
+        return ProductDaoImpl.getInstance();
     }
 
     @Override
     public ProductProducerDao getProductProducerDao() {
-        return MySqlProductProducerDao.getInstance();
+        return ProductProducerDaoImpl.getInstance();
     }
 
     @Override
     public ProductTypeDao getProductTypeDao() {
-        return MySqlProductTypeDao.getInstance();
+        return ProductTypDaoImpl.getInstance();
     }
 
     @Override
     public RentalDao getRentalDao() {
-        return MySqlRentalDao.getInstance();
+        return RentalDaoImpl.getInstance();
     }
 
     @Override
     public StoreDao getStoreDao() {
-        return MySqlStoreDao.getInstance();
+        return StoreDaoImpl.getInstance();
     }
 
     @Override
     public UserDao getUserDao() {
-        return MySqlUserDao.getInstance();
+        return UserDaoImpl.getInstance();
     }
 
     @Override
     public VerificationTokenDao getVerificationTokenDao() {
-        return MySqlVerificationTokenDao.getInstance();
+        return VerificationTokenDaoImpl.getInstance();
     }
 
     @Override
     public UserRoleDao getUserRoleDao() {
-        return MySqlUserRoleDao.getInstance();
+        return UserRoleDaoImpl.getInstance();
     }
 
 }

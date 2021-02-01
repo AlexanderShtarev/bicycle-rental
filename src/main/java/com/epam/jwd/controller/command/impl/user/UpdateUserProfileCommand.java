@@ -15,6 +15,7 @@ import com.epam.jwd.validator.EntityValidator;
 import com.epam.jwd.validator.rule.LengthRule;
 import com.epam.jwd.validator.rule.NotEmptyRule;
 import com.epam.jwd.validator.rule.PatternRule;
+import com.lambdaworks.crypto.SCryptUtil;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -71,6 +72,7 @@ public class UpdateUserProfileCommand extends Command {
             forward(PageConstant.ERROR_PAGE);
         }
 
+        user.setPassword(SCryptUtil.scrypt(password, 16, 16, 16));
         userService.updateUser(user);
 
     }

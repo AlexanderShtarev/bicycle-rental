@@ -24,6 +24,7 @@ public class CommandType {
                 Map.entry("TO_PRODUCTS_PAGE", new ForwardCommand(PageConstant.PRODUCTS_PAGE)),
 
                 //user
+                Map.entry("TO_PRODUCT_DETAILS_PAGE", new ForwardCommand(PageConstant.PRODUCT_DETAILS))
                 Map.entry("TO_PROFILE_PAGE", new ForwardCommand(PageConstant.PROFILE_PAGE)),
                 Map.entry("UPDATE_USER_PROFILE", new UpdateUserProfileCommand()),
 

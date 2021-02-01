@@ -1,6 +1,7 @@
 package com.epam.jwd.controller.command;
 
-import com.epam.jwd.controller.command.impl.ToHomePageCommand;
+import com.epam.jwd.controller.PageConstant;
+import com.epam.jwd.controller.command.impl.ForwardCommand;
 import com.mysql.cj.util.StringUtils;
 
 public class CommandFactory {
@@ -15,7 +16,7 @@ public class CommandFactory {
         }
 
         return CommandType.getCommands()
-                .getOrDefault(commandName.toUpperCase(), new ToHomePageCommand());
+                .getOrDefault(commandName.toUpperCase(), new ForwardCommand(PageConstant.HOME_PAGE));
 
     }
 

@@ -2,21 +2,18 @@ package com.epam.jwd.dao;
 
 import com.epam.jwd.criteria.Criteria;
 import com.epam.jwd.domain.ProductType;
-import com.epam.jwd.exception.DaoException;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductTypeDao {
 
-    List<ProductType> getAll(Connection con) throws DaoException;
+    Optional<ProductType> findSingleTypeByCriteria(Criteria<? extends ProductType> criteria);
 
-    List<ProductType> getByCriteria(Connection con, Criteria<? extends ProductType> criteria) throws DaoException;
+    ProductType findTypeByProductId();
 
-    Long add(Connection con, ProductType type) throws DaoException;
+    List<ProductType> findAllTypesByCriteria(Criteria<? extends ProductType> criteria);
 
-    void update(Connection con, ProductType type) throws DaoException;
-
-    void delete(Connection con, Long typeId) throws DaoException;
-
+    ProductType persist(Connection con, ProductType type);
 }

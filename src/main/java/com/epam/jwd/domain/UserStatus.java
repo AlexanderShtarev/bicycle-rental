@@ -1,7 +1,9 @@
 package com.epam.jwd.domain;
 
 import com.epam.jwd.context.annotation.NotEmpty;
+import com.epam.jwd.context.annotation.Table;
 
+@Table(name = "user_status")
 public enum UserStatus {
     ACTIVE(1),
     NON_ACTIVE(2),

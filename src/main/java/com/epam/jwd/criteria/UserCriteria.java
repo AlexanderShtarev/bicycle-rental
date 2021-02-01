@@ -16,7 +16,7 @@ public class UserCriteria extends Criteria<User> {
     private List<UserRole> roles;
     private UserStatus status;
 
-    public UserCriteria(Criteria.Builder<? extends Criteria.Builder> builder) {
+    public UserCriteria(Criteria.Builder<? extends Builder> builder) {
         super(builder);
     }
 
