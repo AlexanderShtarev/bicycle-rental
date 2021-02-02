@@ -47,7 +47,6 @@ create table users
     email     varchar(320)  not null,
     password  varchar(128)  not null,
     name      varchar(128)  not null,
-    phone     varchar(20)   not null,
     balance   numeric(9, 2) not null,
     status_id bigint(20)    not null,
     image_id  bigint(20)    not null,
@@ -168,8 +167,6 @@ create unique index type_uindex
 create table rental
 (
     id               bigint(20) auto_increment,
-    inventory_id     bigint(20) not null,
-    product_quantity int        not null,
     user_id          bigint(20) not null,
     rental_date      datetime   not null,
     return_date      datetime,
@@ -180,12 +177,24 @@ create table rental
     constraint rental_user_fk
         foreign key rental (user_id) references users (id)
             ON UPDATE cascade ON DELETE restrict,
-    constraint rental_inventory_fk
-        foreign key rental (inventory_id) references inventory (id)
-            ON UPDATE cascade ON DELETE restrict,
     constraint rental_rental_status_fk
         foreign key rental (status_id) references rental_status (id)
             ON UPDATE cascade ON DELETE restrict
+);
+
+create table rental_products
+(
+    inventory_id bigint(20) not null,
+    rental_id    bigint(20) not null,
+    product_qty  int        not null,
+    constraint rental_products_pk
+        primary key (inventory_id, rental_id),
+    constraint rental_products_rental_fk
+        foreign key rental_products (rental_id) references rental (id)
+            ON UPDATE cascade ON DELETE cascade,
+    constraint rental_inventory_fk
+        foreign key rental_products (inventory_id) references inventory (id)
+            ON UPDATE cascade ON DELETE cascade
 );
 
 create table payment
