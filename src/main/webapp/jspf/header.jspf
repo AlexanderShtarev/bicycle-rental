@@ -1,0 +1,52 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid sticky">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<c:url value="/controller?command=to_home_page"/>">Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="<c:url value="/controller?command=to_home_page"/>"><fmt:message
+                        key="header.home"/></a></li>
+                <li><a href="<c:url value="/controller?command=to_products_page"/>"><fmt:message
+                        key="header.products"/> </a></li>
+                    <li><a href="<c:url value="/controller?command=to_contact_us_page"/>"><fmt:message
+                            key="header.contact"/> </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="<c:url value="/controller?command=change_locale"/>" class="language"
+                       rel="en-US"><fmt:message key="message.language"/></a>
+                </li>
+
+                <c:choose>
+                    <c:when test="${sessionScope.user != null}">
+
+                        <li><a href="<c:url value="/controller?command=to_profile_page"/>"><span
+                                class="glyphicon glyphicon-user"></span><fmt:message key="header.account"/></a></li>
+                        <li><a href="<c:url value="/controller?command=to_cart_page"/>"><span
+                                class="glyphicon glyphicon-shopping-cart"></span><fmt:message key="header.cart"/></a>
+                        </li>
+                        <li><a href="<c:url value="/controller?command=logout"/>"><span
+                                class="glyphicon glyphicon-log-out"></span><fmt:message key="header.logout"/></a></li>
+                        <c:forEach items="${user.roles}" var="role">
+                            <c:if test="${role == 'ADMIN'}">
+                                <li><a href="<c:url value="/controller?command=to_admin"/>"><span
+                                        class="glyphicon glyphicon-user"></span>ADMIN</a></li>
+                            </c:if>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="<c:url value="/controller?command=to_registration_page"/>"><span
+                                class="glyphicon glyphicon-user"></span><fmt:message key="header.signup"/></a></li>
+                        <li><a href="<c:url value="/controller?command=to_login_page"/>"><span
+                                class="glyphicon glyphicon-log-in"></span><fmt:message key="header.login"/></a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
+    </div>
+</nav>
